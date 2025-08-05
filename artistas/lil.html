@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> LILEN FERREYRA - DJ SQUIRT – El Castillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/sidebar.css" />
+  <style>
+    .carrusel {
+      position: relative;
+      max-width: 600px;
+      margin: 3rem auto 1rem auto;
+      text-align: center;
+    }
+
+   .slide {
+    display: none;
+    text-align: center;
+    }
+
+    .slide.active {
+    display: block;
+    }
+
+    .slide img {
+    width: 100%;
+    height: auto;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .arrow.left {
+      left: 0;
+    }
+
+    .arrow.right {
+      right: 0;
+    }
+
+    .caption {
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', sans-serif;
+    margin-top: 0.5rem;
+    }
+    .bio {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-family: 'Playfair Display', sans-serif;
+      line-height: 1.6;
+    }
+
+    .bio a {
+      text-decoration: underline;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar y Burger -->
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="burger">&#9776;</label>
+
+    <div class="sidebar">
+    <ul>
+        <li><a href="../index.html">EL CASTILLO</a></li>
+        <li><a href="../artistas.html">ARTISTAS </a></li>
+        <li><a href="../about.html">SOBRE EL CASTILLO</a></li>
+        <li><a href="#noticias">NOTICIAS</a></li>
+        <li><a href="../muestras.html">MUESTRAS</a></li>
+    </ul>
+    </div>
+
+  <!-- Galería de obras -->
+  <div class="carrusel">
+    <button class="arrow left" onclick="cambiarSlide(-1)">&#10094;</button>
+
+    <!-- Reemplazar imágenes -->
+    <div class="slide active">
+    <img src="../img/lil-1.png" alt="Obra 1" />
+    <div class="caption">'Compañía Naviera del Litoral S.A.', 2017. Instalación, estructura de madera con pirograbado
+solar y carbonilla, acompañado de publicación impresa, 4 x 6 m</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/lil-2.png" alt="Obra 2" />
+    <div class="caption">'Compañía Naviera del Litoral S.A.', 2017. Instalación, estructura de madera con pirograbado
+solar y carbonilla, acompañado de publicación impresa, 4 x 6 m</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/lil-3.png" alt="Obra 3" />
+    <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/lil-4.png" alt="Obra 3" />
+    <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.
+</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/lil-6.png" alt="Obra 3" />
+    <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/lil-7.png" alt="Obra 3" />
+    <div class="caption">'350s', 2022.
+Instalacion, madera de guatambu, cortezas.
+Apliques de yerba mate y borra de café, hilo sisal,
+potenciadores lineales, perillas, fungis y musgo.
+Dimensiones variables.</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/lil-8.png" alt="Obra 3" />
+    <div class="caption">'Tengo un mixer por corazón', 2023.
+Instalacion, madera de guatambu, apliques de
+borra de café, hilo sisal, potenciadores lineales,
+pirograbado solar. 30 x 20 cm.</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/lil-9.png" alt="Obra 3" />
+    <div class="caption">'SQUIRT', 2022.
+instalación. Pirograbado solar sobre calado de madera
+de guatambú, apliques de yerba mate, flores de tipa y
+borra de café. 2.20 m x 1,20 m</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/lil-10.png" alt="Obra 3" />
+    <div class="caption">'Supays', 2022.
+Dibujo hecho con lápiz de grafito sobre papel.
+21 x 29 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/lil-11.png" alt="Obra 3" />
+    <div class="caption">'Resurrección estelar', 2023.
+Dibujo hecho con lapiz de grafito sobre papel.
+21 x 29 cm </div>
+    </div>
+
+    <button class="arrow right" onclick="cambiarSlide(1)">&#10095;</button>
+   </div> 
+
+  <!-- Biografía -->
+  <section class="bio">
+    <p><strong>Lilen Ferreyra aka DJ SQUIRT</strong> (CABA, 1990)</p>
+    <section>
+  <h2>Formación y Premios</h2>
+  <ul>
+    <li><strong>Programa de Artistas</strong>, 2025. Universidad Torcuato Di Tella.</li>
+    <li><strong>Seminario Cerebro, Arte y Música</strong> por Giulia Valle, 2024. Seminario intensivo sobre neurociencias aplicadas.</li>
+    <li>Becaria en <strong>Laboratorio de Formas de Vida</strong> 2020, coordinado por Alfredo Aracil, a través de Espositivo Madrid.</li>
+    <li><strong>DESCOLONIZACIÓN</strong> por Kebra, 2019: historiografía sonora de los feminismos a través del baile funk.</li>
+    <li>Becaria en <strong>Yungas Buenos Aires</strong>, 2019.</li>
+    <li>Becaria (en colectivo) en <strong>Laboratorio de Acción</strong>, 2019. Complejo Teatral de Buenos Aires.</li>
+    <li>Becaria (en colectivo) en <strong>Escuela de Invierno</strong> 2018. Programa en ópera contemporánea (Teatro Colón y Fundación Williams).</li>
+    <li><strong>Premio Radar</strong>, <em>100% Ópera inmersiva</em>, Regie de Misionera. <strong>Centro Cultural Recoleta</strong>, 2018.</li>
+    <li><strong>Premio Obra a desarrollar</strong>, Grupo Karicia. <strong>Bienal de Arte Joven, Centro Cultural Recoleta</strong>, 2017.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Exhibiciones individuales</h2>
+  <ul>
+    <li><em>Salamanquera</em>, Komuna, 2023.</li>
+    <li><em>Movimientos Variables</em>, Perfuch en UV Estudios, 2019.</li>
+    <li><em>Lo cursi es lo nuestro</em>, Isla Flotante, 2012.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Exhibiciones en colectivo</h2>
+  <ul>
+    <li><strong>El Castillo</strong>, 2024.</li>
+    <li><em>El castillo de arte y magia</em>, en ‘La llave y el testigo’ de Diego de Aduriz, MACBA, 2022.</li>
+    <li><em>Finis gloriæ mvndi homini</em> – Misionera. Ópera performática, curaduría Lolo & Lauti.</li>
+    <li><strong>Perfuch 4K</strong>, UV Estudios, 2019.</li>
+    <li><em>Sopa de Agua</em>, Ópera performática, 2019.</li>
+    <li><em>100%</em>, Ópera inmersiva – Misionera, Premio Radar, Centro Cultural Recoleta, 2018.</li>
+    <li><em>Trabajos y Amarres</em> – Misionera, Perfuch, UV Estudios, 2018.</li>
+    <li><em>Seguimos Teniendo Dedos</em>, Misionera, curaduría de Lolo&Lauti, UV Estudios, 2018.</li>
+    <li><em>Para Mi</em>, Revista online de crítica de arte – Misionera, 2018–2021.</li>
+    <li><em>Compañía Naviera del Litoral S.A.</em>, curaduría Lara Marmor, Patricio Larrambebere y Marcela Sinclair.</li>
+    <li>Premio Obra a Desarrollar, <strong>Bienal de Arte Joven, Centro Cultural Recoleta</strong>, 2017.</li>
+    <li><strong>Beca Toddy</strong>, movilidad para artistas sub 30 – Misionera, 2015.</li>
+    <li><strong>Bienal Internacional del Pensamiento Paralelo</strong>, Misionera, Museo Altos de Elorriaga, 2016.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Trabajos, investigaciones y colaboraciones</h2>
+  <ul>
+    <li><strong>Kioskera</strong>: fiesta y sello discográfico, 2022–2024.</li>
+    <li><strong>CeZaBe</strong>: colectivo raver y productora de freepass, 2022–2024.</li>
+    <li><strong>Evolución Fungi</strong>: proyecto colectivo de investigación y divulgación micológica, 2022–2024.</li>
+  </ul>
+</section>
+
+  </section>
+
+  <!-- Script carrusel -->
+  <script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function cambiarSlide(dir) {
+      slides[index].classList.remove('active');
+      index = (index + dir + slides.length) % slides.length;
+      slides[index].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

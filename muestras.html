@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muestras – El Castillo</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/sidebar.css" />
+  <style>
+    .topbar {
+      background-color: #ffffff;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-family: 'Impact', serif;
+    }
+
+    .muestras-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      margin-left: 200px; /* espacio para sidebar */
+    }
+
+    .muestra {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+
+    }
+
+    .muestra a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+
+    .muestra img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 0.5rem;
+    }
+
+    .muestra h3 {
+      font-size: 1.4rem;
+      margin: 0.5rem 0;
+      text-transform: uppercase;
+    }
+
+    .muestra .subtitulo {
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .muestra .fecha {
+      color: blue;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .muestra p {
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="burger">&#9776;</label>
+
+  <div class="sidebar">
+  <ul>
+    <li><a href="index.html">EL CASTILLO</a></li>
+    <li><a href="artistas.html">ARTISTAS </a></li>
+    <li><a href="about.html">SOBRE EL CASTILLO</a></li>
+    <li><a href="#noticias">NOTICIAS</a></li>
+    <li><a href="muestras.html">MUESTRAS</a></li>
+  </ul>
+</div>
+
+  <header class="topbar">
+    <h1 class="titulo">MUESTRAS</h1>
+  </header>
+
+  <main class="muestras-container">
+
+           <!-- Muestra 4 -->
+    <div class="muestra">
+      <a href="muestras/muestra4.html">
+      <h3>SPELLBOUND</h3>
+      <img src="img/muestra-4/WhatsApp Image 2025-07-29 at 4.27.23 PM.jpeg" alt="Group Show" />
+      </a>
+      <div class="subtitulo">Colectiva</div>
+      <div class="fecha">11.7.2025</div>
+      <p>Spellbound en <em>El Castillo</em>, CABA</p>
+    </div>
+
+
+    <!-- Muestra 1 -->
+    <div class="muestra">
+         <a href="muestras/muestra1.html">
+      <h3>SI TIENEN LAS FLORES PARA QUE NECESITAN A DIOS</h3>
+      <img src="img/muestra-si-tienen.png" alt="Boz Pinturas" />
+      </a>
+      <div class="subtitulo">Colectiva</div>
+      <div class="fecha">23.03.2024</div>
+      <p>El castillo presenta esta muestra colectiva <em>SI TIENEN LAS FLORES PARA QUE NECESITAN A DIOS</em>, una exhibición compuesta por varios artistas.</p>
+    </div>
+
+        <!-- Muestra 3 -->
+    <div class="muestra">
+      <a href="muestras/muestra2.html">
+      <h3>EL CASTILLO EN CONSTITUCIóN</h3>
+      <img src="img/consti/Captura de Pantalla 2025-06-26 a la(s) 14.28.02.png" alt="el castillo en constitucion" />
+      </a>
+      <div class="subtitulo">El Castillo en Constitución</div>
+      <div class="fecha">05.07.2019</div>
+      <p>El Castillo en Constitucion, Caba, Argentina.</p>
+    </div>
+
+    <!-- Muestra 2 -->
+    <div class="muestra">
+      <a href="muestras/muestra3.html">
+      <h3>INAUGURACION EL CASTILLO</h3>
+      <img src="img/inauguracion_muestra.jpg" alt="Group Show" />
+      </a>
+      <div class="subtitulo">Colectiva</div>
+      <div class="fecha">23.09.2018</div>
+      <p>Inauguracion de <em>El Castillo</em> en Rosario</p>
+    </div>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muestra Inauguracion</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/sidebar.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <style>
+    .carrusel {
+      position: relative;
+      max-width: 600px;
+      margin: 3rem auto 1rem auto;
+      text-align: center;
+    }
+
+   .slide {
+    display: none;
+    text-align: center;
+    }
+
+    .slide.active {
+    display: block;
+    }
+
+    .slide img {
+    width: 100%;
+    height: auto;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .arrow.left {
+      left: 0;
+    }
+
+    .arrow.right {
+      right: 0;
+    }
+
+    .caption {
+    font-size: 0.9rem;
+    font-family: Arial, sans-serif;
+    margin-top: 0.5rem;
+    }
+    .bio {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .bio a {
+      text-decoration: underline;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar y Burger -->
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="burger">&#9776;</label>
+
+    <div class="sidebar">
+    <ul>
+        <li><a href="../index.html">EL CASTILLO</a></li>
+        <li><a href="../artistas.html">ARTISTAS </a></li>
+        <li><a href="../about.html">SOBRE EL CASTILLO</a></li>
+        <li><a href="#noticias">NOTICIAS</a></li>
+        <li><a href="../muestras.html">MUESTRAS</a></li>
+    </ul>
+    </div>
+
+  <!-- Galería de obras -->
+  <div class="carrusel">
+    <button class="arrow left" onclick="cambiarSlide(-1)">&#10094;</button>
+
+    <!-- Reemplazar imágenes -->
+
+    <div class="slide active">
+    <img src="../img/muestra-4/foto_005.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/muestra-4/foto_006.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/muestra-4/foto_007.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/muestra-4/foto_008.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/muestra-4/foto_009.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/muestra-4/foto_010.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/muestra-4/foto_011.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+     <div class="slide">
+    <img src="../img/muestra-4/foto_012.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+     <div class="slide">
+    <img src="../img/muestra-4/foto_013.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+     <div class="slide">
+    <img src="../img/muestra-4/foto_014.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+      <div class="slide">
+    <img src="../img/muestra-4/foto_015.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+      <div class="slide">
+    <img src="../img/muestra-4/foto_016.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+      <div class="slide">
+    <img src="../img/muestra-4/foto_017.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+      <div class="slide">
+    <img src="../img/muestra-4/foto_018.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+     <div class="slide">
+    <img src="../img/muestra-4/foto_019.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+     <div class="slide">
+    <img src="../img/muestra-4/foto_020.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+     <div class="slide">
+    <img src="../img/muestra-4/foto_021.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+     <div class="slide">
+    <img src="../img/muestra-4/foto_022.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+     <div class="slide">
+    <img src="../img/muestra-4/foto_023.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+     <div class="slide">
+    <img src="../img/muestra-4/foto_024.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+    <div class="slide">
+    <img src="../img/muestra-4/foto_025.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+    <div class="slide">
+    <img src="../img/muestra-4/foto_026.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+    <div class="slide">
+    <img src="../img/muestra-4/foto_027.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+    <div class="slide">
+    <img src="../img/muestra-4/foto_028.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+    <button class="arrow right" onclick="cambiarSlide(1)">&#10095;</button>
+    </div>
+
+  <!-- Biografía -->
+  <section class="bio">
+    <p><strong>[Nombre del artista]</strong></p>
+
+    <p></p>
+
+
+  </section>
+
+  <!-- Script carrusel -->
+  <script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function cambiarSlide(dir) {
+      slides[index].classList.remove('active');
+      index = (index + dir + slides.length) % slides.length;
+      slides[index].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

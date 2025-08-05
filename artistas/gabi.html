@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabriel Fernández – El Castillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/sidebar.css" />
+  <style>
+    .carrusel {
+      position: relative;
+      max-width: 600px;
+      margin: 3rem auto 1rem auto;
+      text-align: center;
+    }
+
+   .slide {
+    display: none;
+    text-align: center;
+    }
+
+    .slide.active {
+    display: block;
+    }
+
+    .slide img {
+    width: 100%;
+    height: auto;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .arrow.left {
+      left: 0;
+    }
+
+    .arrow.right {
+      right: 0;
+    }
+
+    .caption {
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', sans-serif;
+    margin-top: 0.5rem;
+    }
+    .bio {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-family: 'Playfair Display', sans-serif;
+      line-height: 1.6;
+    }
+
+    .bio a {
+      text-decoration: underline;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar y Burger -->
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="burger">&#9776;</label>
+
+  <div class="sidebar">
+  <ul>
+    <li><a href="../index.html">EL CASTILLO</a></li>
+    <li><a href="../artistas.html">ARTISTAS </a></li>
+    <li><a href="../about.html">SOBRE EL CASTILLO</a></li>
+    <li><a href="#noticias">NOTICIAS</a></li>
+    <li><a href="../muestras.html">MUESTRAS</a></li>
+  </ul>
+</div>
+
+  <!-- Galería de obras -->
+  <div class="carrusel">
+    <button class="arrow left" onclick="cambiarSlide(-1)">&#10094;</button>
+
+    <!-- Reemplazar imágenes -->
+    <div class="slide active">
+    <img src="../img/obra-gabi.png" alt="Obra 1" />
+    <div class="caption">Sin título, 2010. Tiza pastel y cigarrillos sobre papel. 60 x 48 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-gabi-2.png" alt="Obra 2" />
+    <div class="caption">Obra 2, 2012. Collage sobre cartón. 50 x 40 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-gabi-3.png" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+     <div class="slide">
+    <img src="../img/obra-gabi-4.png" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+     <div class="slide">
+    <img src="../img/obra-gabi-5.png" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+     <div class="slide">
+    <img src="../img/obra-gabi-6.png" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-gabi-7.png" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-gabi-8.png" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-gabi-9.png" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+
+    <button class="arrow right" onclick="cambiarSlide(1)">&#10095;</button>
+  </div>
+
+  <!-- Biografía -->
+  <section class="bio">
+    <p><strong>Gabriel Fernández</strong> (Rosario, 1988) – Vive y trabajo en la ciudad de Rosario. Se dedica a la docencia, al dibujo y a la crítica de arte</p>
+    <p>Estudio Licenciatura en Bellas Artes con orientación en Teoría y Crítica en la Universidad Nacional de Rosario.</p>
+    <p>Entre 2013 a 2018 asistio al taller de dibujo Un Triángulo y una Calavera coordinado por Pauline Fondevila y Silvia Lenardón.</p>
+    <p>Participo de diversas muestras siendo estas últimas:</p>
+        <p><strong>2023</strong> Chasquido, Crudo Arte Contemporáneo, Rosario.</p>
+        <p><strong>2021</strong> Una de esas tardes... 97°Salón Anual Nacional de Santa Fe, Rosa Galisteo de
+        Rodriguez, Santa Fe.</p>
+        <p><strong>2018</strong> Corazones Solitarios curada por Pauline Fondevila, Espacio Fundación OSDE.
+        Rosario.</p>
+        <p><strong>2017</strong> Black Horse/ White Horse Mal de Archivo y Bon Scott Bar, Rosario.</p>
+        <p><strong>2016</strong> Modelo para Desviar: homenaje a Öyvind Fahlström. CEC, Centro de Expresiones
+        Contemporáneas, Rosario.</p>
+        <p><strong>2016</strong> Ejercicios. Formación, aprendizaje e intercambios en el arte contemporáneo.
+        MACRO Museo de Arte Contemporáneo, Rosario</p>
+        <p><strong>2015</strong> Escudos La Toma Galería de Arte, Rosario.</p>
+        <p><strong>2014</strong> Fantasías y Homenajes: Artistas jóvenes de Rosario. Alianza Francesa, Rosario.</p>
+    <p><a href="../pdfs/[cv-nombre].pdf" target="_blank">Descargar CV (pdf)</a></p>
+  </section>
+
+  <!-- Script carrusel -->
+  <script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function cambiarSlide(dir) {
+      slides[index].classList.remove('active');
+      index = (index + dir + slides.length) % slides.length;
+      slides[index].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

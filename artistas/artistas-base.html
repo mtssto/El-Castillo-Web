@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Nombre del artista] – El Castillo</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/sidebar.css" />
+  <style>
+    .carrusel {
+      position: relative;
+      max-width: 600px;
+      margin: 3rem auto 1rem auto;
+      text-align: center;
+    }
+
+   .slide {
+    display: none;
+    text-align: center;
+    }
+
+    .slide.active {
+    display: block;
+    }
+
+    .slide img {
+    width: 100%;
+    height: auto;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .arrow.left {
+      left: 0;
+    }
+
+    .arrow.right {
+      right: 0;
+    }
+
+    .caption {
+    font-size: 0.9rem;
+    font-family: Arial, sans-serif;
+    margin-top: 0.5rem;
+    }
+    .bio {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .bio a {
+      text-decoration: underline;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar y Burger -->
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="burger">&#9776;</label>
+
+    <div class="sidebar">
+    <ul>
+        <li><a href="../index.html">EL CASTILLO</a></li>
+        <li><a href="../artistas.html">ARTISTAS </a></li>
+        <li><a href="../about.html">SOBRE EL CASTILLO</a></li>
+        <li><a href="#noticias">NOTICIAS</a></li>
+        <li><a href="#novedades">MUESTRAS</a></li>
+    </ul>
+    </div>
+
+  <!-- Galería de obras -->
+  <div class="carrusel">
+    <button class="arrow left" onclick="cambiarSlide(-1)">&#10094;</button>
+
+    <!-- Reemplazar imágenes -->
+    <div class="slide active">
+    <img src="../img/obra1.jpg" alt="Obra 1" />
+    <div class="caption">Sin título, 2010. Tiza pastel y cigarrillos sobre papel. 60 x 48 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra2.jpg" alt="Obra 2" />
+    <div class="caption">Obra 2, 2012. Collage sobre cartón. 50 x 40 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra3.jpg" alt="Obra 3" />
+    <div class="caption">Obra 3, 2015. Mixta sobre tela. 100 x 100 cm</div>
+    </div>
+    <button class="arrow right" onclick="cambiarSlide(1)">&#10095;</button>
+    </div>
+
+  <!-- Biografía -->
+  <section class="bio">
+    <p><strong>[Nombre del artista]</strong> ([Ciudad], [Año de nacimiento]) – Acá podés escribir la biografía artística, intereses, exposiciones, curadurías, etc.</p>
+
+    <p>Segundo párrafo con proyectos recientes, premios, residencias, libros, etc.</p>
+
+    <p><a href="../pdfs/[cv-nombre].pdf" target="_blank">Descargar CV (pdf)</a></p>
+  </section>
+
+  <!-- Script carrusel -->
+  <script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function cambiarSlide(dir) {
+      slides[index].classList.remove('active');
+      index = (index + dir + slides.length) % slides.length;
+      slides[index].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

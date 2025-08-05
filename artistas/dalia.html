@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dalia DesAmor – El Castillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/sidebar.css" />
+  <style>
+    .carrusel {
+      position: relative;
+      max-width: 600px;
+      margin: 3rem auto 1rem auto;
+      text-align: center;
+    }
+
+    .slide {
+    display: none;
+    text-align: center;
+    }
+
+    .slide.active {
+    display: block;
+    }
+
+    .slide img {
+    width: 100%;
+    height: auto;
+    }
+
+
+    .arrow {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .arrow.left {
+      left: 0;
+    }
+
+    .arrow.right {
+      right: 0;
+    }
+
+    .caption {
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', sans-serif;
+    margin-top: 0.5rem;
+    }
+
+    .bio {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-family: 'Playfair Display', sans-serif;
+      line-height: 1.6;
+    }
+
+    .bio a {
+      text-decoration: underline;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar y Burger -->
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="burger">&#9776;</label>
+
+<div class="sidebar">
+  <ul>
+    <li><a href="../index.html">EL CASTILLO</a></li>
+    <li><a href="../artistas.html">ARTISTAS </a></li>
+    <li><a href="../about.html">SOBRE EL CASTILLO</a></li>
+    <li><a href="#noticias">NOTICIAS</a></li>
+    <li><a href="../muestras.html">MUESTRAS</a></li>
+  </ul>
+</div>
+
+  <!-- Galería de obras -->
+  <div class="carrusel">
+    <button class="arrow left" onclick="cambiarSlide(-1)">&#10094;</button>
+
+    <!-- Reemplazar imágenes -->
+    <div class="slide active">
+    <img src="../img/obra-dalia.png" alt="Obra 1" />
+    <div class="caption"></div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-dalia-2.png" alt="Obra 2" />
+    <div class="caption"></div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-dalia-3.png" alt="Obra 3" />
+    <div class="caption"></div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-dalia-4.png" alt="Obra 3" />
+    <div class="caption"></div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-dalia-5.png" alt="Obra 3" />
+    <div class="caption"></div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-dalia-6.png" alt="Obra 3" />
+    <div class="caption"></div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-dalia-7.png" alt="Obra 3" />
+    <div class="caption"></div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-dalia-8.png" alt="Obra 3" />
+    <div class="caption"></div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-dalia-9.png" alt="Obra 3" />
+    <div class="caption"></div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-dalia-10.png" alt="Obra 3" />
+    <div class="caption"></div>
+    </div>
+
+    <button class="arrow right" onclick="cambiarSlide(1)">&#10095;</button>
+  
+  </div>
+
+  <!-- Biografía -->
+  <section class="bio">
+
+    <p><strong>Dalia DesAmor</strong> ( Rosario, 1990 )
+    es una artista visual y animadora nacida en Rosario, Argentina. Se formó en la Escuela para
+    Animadores de Rosario. Su trabajo combina medios visuales diversos —desde el dibujo, la
+    performance, hasta la animación experimental.</p>
+    <p>Desde 2020 participa activamente en exposiciones colectivas, tanto en espacios
+    independientes como en instituciones de arte contemporáneo.
+    En 2020 Formó parte de Otra feria de arte – Edición Jóvenes Artistas Americanos
+    En 2021 en el marco de la exposición “Mi cuerpo eléctrico” de Diego de Aduriz, participó
+    junto a “El Castillo“ en la muestra colectiva expuesta en la galería Aldo de Sousa.
+    También participó en la muestra Geometría Polisentimental en MUNAR Arte, y
+    en la muestra “Explorar el azar” coordinada por Pauline Fondevila en Bon Scott, Rosario.
+    En 2022 participó en el marco de la muestra antológica “La llave y el testigo” de Diego de
+    Aduriz junto a “El Castillo” en la muestra colectiva exhibida en en el Museo MACBA.
+    Ese mismo año, presentó dos cortos animados en el Ciclo Audiovisual Internacional Querer
+    "Inclusiva",</p>
+    <p>2023 participó en “El Castillo” en la muestra colectiva “Si tienen flores para qué
+    necesitan a Dios “. </p>
+    <p> 2024 participó en la muestra colectiva de “EL castillo” en La Greco bar.
+    También en Casa Moco con otra muestra colectiva.
+    Participó del proyecto “Como queremos vivir juntx” con el apoyo del Goethe institut, la
+    Fundación Medifé, la Alianza Francesa y el fondo franco-alemán donde realizó un video-arte
+    con el mismo título.</p>
+    <p>En el mismo año, cursó la cátedra de Posporno de la UNR con la coordinación d Mauro
+    Guzmán y participó de la muestra colectiva de la misma.</p>
+    <p><a href="../cv/Dalia DesAmor.pdf">Descargar CV (pdf)</a></p>
+  </section>
+
+  <!-- Script carrusel -->
+  <script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function cambiarSlide(dir) {
+      slides[index].classList.remove('active');
+      index = (index + dir + slides.length) % slides.length;
+      slides[index].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

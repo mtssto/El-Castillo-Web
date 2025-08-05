@@ -1,0 +1,19 @@
+.topbar {
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+}
+
+
+.contenido {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+}
+

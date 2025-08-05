@@ -1,0 +1,45 @@
+.artistas-listado {
+  margin-left: 200px;
+  padding: 2rem;
+  font-family: 'Playfair Display', sans-serif;
+  background-color: white;
+  font-weight: bold;
+}
+
+.artistas-listado ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.artistas-listado li {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 1.5rem 0;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.topbar {
+  color: rgb(0, 0, 0);
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+}
+.titulo {
+  font-size: 3rem;
+  margin: 1rem;
+  font-weight: bold;
+  font-family: 'Playfair Display', serif;
+  color: black;
+  text-align: center;
+}
+.artistas-listado a {
+  text-decoration: none;
+  color: black;
+}
+.artistas-listado a:hover {
+  color: #666;
+}

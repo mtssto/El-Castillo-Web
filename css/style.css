@@ -1,0 +1,47 @@
+body {
+  background-color: #ffffff;
+  font-family: 'Impact', serif;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+}
+
+.titulo {
+  font-size: 3rem;
+  margin: 1rem;
+  font-weight: bold;
+  font-family: 'Playfair Display', serif;
+  color: black;
+  text-align: center;
+}
+
+.slideshow-container {
+  position: relative;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+}
+
+
+.slide.active {
+  display: block;
+  animation: fade 1s ease-in-out;
+}
+
+/* Efecto de fade */
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+
+
