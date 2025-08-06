@@ -2,75 +2,150 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> LILEN FERREYRA - DJ SQUIRT – El Castillo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LILEN FERREYRA – El Castillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/sidebar.css" />
   <style>
-    .carrusel {
-      position: relative;
-      max-width: 600px;
-      margin: 3rem auto 1rem auto;
-      text-align: center;
-    }
-
-   .slide {
-    display: none;
-    text-align: center;
-    }
-
-    .slide.active {
-    display: block;
-    }
-
-    .slide img {
-    width: 100%;
-    height: auto;
-    }
-
-    .arrow {
-      font-size: 2rem;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
+       body {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 1rem;
+      background: #fff;
       color: #333;
+      padding-left: 250px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-auto-rows: 10px;
+      gap: 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
       cursor: pointer;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      transition: transform 0.3s ease;
+      background-color: transparent; /* importante quitar fondo */
+      border-radius: 0; 
     }
 
-    .arrow.left {
-      left: 0;
+    .gallery-item:hover {
+      transform: scale(1.05);
+      z-index: 2;
     }
 
-    .arrow.right {
-      right: 0;
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      border-radius: 0; 
     }
 
     .caption {
-    font-size: 0.9rem;
-    font-family: 'Playfair Display', sans-serif;
-    margin-top: 0.5rem;
-    }
-    .bio {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      font-family: 'Playfair Display', sans-serif;
-      line-height: 1.6;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 6px 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    border-radius: 0 0 8px 8px;
+    z-index: 2;
+    /* NEW: Remove height from layout flow */
+    height: auto;
+    width: 100%;
+    border-radius: 0; 
+  }
+
+
+    .gallery-item:hover .caption {
+      opacity: 1;
     }
 
-    .bio a {
-      text-decoration: underline;
-      color: black;
+
+    /* Responsive for small screens */
+    @media (max-width: 800px) {
+      .caption {
+    display: none !important;
+  }
+       body {
+    padding-left: 0 !important;
+    padding: 0 !important;
+  }
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+      .sidebar { width: 100vw; position: fixed; }
+      h1 { font-size: 1.2rem; }
+
+        
+  .lightbox-img { max-width: 95vw; max-height: 50vh; }
+  .close { top: 0.7rem; right: 1.2rem; font-size: 2rem; }
     }
+
+    .lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 70vh;
+  border-radius: 0;
+  box-shadow: 0 4px 20px #000b;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+.lightbox-caption {
+  color: #fff;
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 90vw;
+  margin-bottom: 1.5rem;
+}
+
+.close {
+  color: #fff;
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 10001;
+  text-shadow: 0 2px 8px #000;
+  user-select: none;
+}
+
+    /* Este JS hace que cada item tenga altura dinámica para el masonry */
   </style>
 </head>
 <body>
 
-  <!-- Sidebar y Burger -->
-  <input type="checkbox" id="menu-toggle" />
+   <input type="checkbox" id="menu-toggle" />
   <label for="menu-toggle" class="burger">&#9776;</label>
 
     <div class="sidebar">
@@ -83,148 +158,96 @@
     </ul>
     </div>
 
-  <!-- Galería de obras -->
-  <div class="carrusel">
-    <button class="arrow left" onclick="cambiarSlide(-1)">&#10094;</button>
+  <h1>LILEN FERREYRA</h1>
 
-    <!-- Reemplazar imágenes -->
-    <div class="slide active">
-    <img src="../img/lil-1.png" alt="Obra 1" />
-    <div class="caption">'Compañía Naviera del Litoral S.A.', 2017. Instalación, estructura de madera con pirograbado
-solar y carbonilla, acompañado de publicación impresa, 4 x 6 m</div>
+  <div class="gallery" id="gallery">
+    <div class="gallery-item">
+      <img src="../img/lil-1.png" alt="Obra 1" />
+      <div class="caption">'Compañía Naviera del Litoral S.A.', 2017. Instalación, estructura de madera con pirograbado solar y carbonilla, acompañado de publicación impresa, 4 x 6 m</div>
     </div>
-
-    <div class="slide">
-    <img src="../img/lil-2.png" alt="Obra 2" />
-    <div class="caption">'Compañía Naviera del Litoral S.A.', 2017. Instalación, estructura de madera con pirograbado
-solar y carbonilla, acompañado de publicación impresa, 4 x 6 m</div>
+    <div class="gallery-item">
+      <img src="../img/lil-2.png" alt="Obra 2" />
+      <div class="caption">'Compañía Naviera del Litoral S.A.', 2017. Instalación, estructura de madera con pirograbado solar y carbonilla, acompañado de publicación impresa, 4 x 6 m</div>
     </div>
-
-    <div class="slide">
-    <img src="../img/lil-3.png" alt="Obra 3" />
-    <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.</div>
+    <div class="gallery-item">
+      <img src="../img/lil-3.png" alt="Obra 3" />
+      <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.</div>
     </div>
+    <div class="gallery-item">
+      <img src="../img/lil-4.png" alt="Obra 4" />
+      <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../img/lil-6.png" alt="Obra 5" />
+      <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../img/lil-7.png" alt="Obra 6" />
+      <div class="caption">'350s', 2022. Instalacion, madera de guatambu, cortezas. Apliques de yerba mate y borra de café, hilo sisal, potenciadores lineales, perillas, fungis y musgo. Dimensiones variables.</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../img/lil-8.png" alt="Obra 7" />
+      <div class="caption">'Tengo un mixer por corazón', 2023. Instalacion, madera de guatambu, apliques de borra de café, hilo sisal, potenciadores lineales, pirograbado solar. 30 x 20 cm.</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../img/lil-9.png" alt="Obra 8" />
+      <div class="caption">'SQUIRT', 2022. Instalación. Pirograbado solar sobre calado de madera de guatambú, apliques de yerba mate, flores de tipa y borra de café. 2.20 m x 1,20 m</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../img/lil-10.png" alt="Obra 9" />
+      <div class="caption">'Supays', 2022. Dibujo hecho con lápiz de grafito sobre papel. 21 x 29 cm</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../img/lil-11.png" alt="Obra 10" />
+      <div class="caption">'Resurrección estelar', 2023. Dibujo hecho con lapiz de grafito sobre papel. 21 x 29 cm</div>
+    </div>
+  </div>
 
-    <div class="slide">
-    <img src="../img/lil-4.png" alt="Obra 3" />
-    <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.
+  <!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
-    </div>
 
-    <div class="slide">
-    <img src="../img/lil-6.png" alt="Obra 3" />
-    <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.</div>
-    </div>
-
-    <div class="slide">
-    <img src="../img/lil-7.png" alt="Obra 3" />
-    <div class="caption">'350s', 2022.
-Instalacion, madera de guatambu, cortezas.
-Apliques de yerba mate y borra de café, hilo sisal,
-potenciadores lineales, perillas, fungis y musgo.
-Dimensiones variables.</div>
-    </div>
-
-    <div class="slide">
-    <img src="../img/lil-8.png" alt="Obra 3" />
-    <div class="caption">'Tengo un mixer por corazón', 2023.
-Instalacion, madera de guatambu, apliques de
-borra de café, hilo sisal, potenciadores lineales,
-pirograbado solar. 30 x 20 cm.</div>
-    </div>
-
-    <div class="slide">
-    <img src="../img/lil-9.png" alt="Obra 3" />
-    <div class="caption">'SQUIRT', 2022.
-instalación. Pirograbado solar sobre calado de madera
-de guatambú, apliques de yerba mate, flores de tipa y
-borra de café. 2.20 m x 1,20 m</div>
-    </div>
-
-    <div class="slide">
-    <img src="../img/lil-10.png" alt="Obra 3" />
-    <div class="caption">'Supays', 2022.
-Dibujo hecho con lápiz de grafito sobre papel.
-21 x 29 cm</div>
-    </div>
-
-    <div class="slide">
-    <img src="../img/lil-11.png" alt="Obra 3" />
-    <div class="caption">'Resurrección estelar', 2023.
-Dibujo hecho con lapiz de grafito sobre papel.
-21 x 29 cm </div>
-    </div>
-
-    <button class="arrow right" onclick="cambiarSlide(1)">&#10095;</button>
-   </div> 
-
-  <!-- Biografía -->
-  <section class="bio">
-    <p><strong>Lilen Ferreyra aka DJ SQUIRT</strong> (CABA, 1990)</p>
-    <section>
-  <h2>Formación y Premios</h2>
-  <ul>
-    <li><strong>Programa de Artistas</strong>, 2025. Universidad Torcuato Di Tella.</li>
-    <li><strong>Seminario Cerebro, Arte y Música</strong> por Giulia Valle, 2024. Seminario intensivo sobre neurociencias aplicadas.</li>
-    <li>Becaria en <strong>Laboratorio de Formas de Vida</strong> 2020, coordinado por Alfredo Aracil, a través de Espositivo Madrid.</li>
-    <li><strong>DESCOLONIZACIÓN</strong> por Kebra, 2019: historiografía sonora de los feminismos a través del baile funk.</li>
-    <li>Becaria en <strong>Yungas Buenos Aires</strong>, 2019.</li>
-    <li>Becaria (en colectivo) en <strong>Laboratorio de Acción</strong>, 2019. Complejo Teatral de Buenos Aires.</li>
-    <li>Becaria (en colectivo) en <strong>Escuela de Invierno</strong> 2018. Programa en ópera contemporánea (Teatro Colón y Fundación Williams).</li>
-    <li><strong>Premio Radar</strong>, <em>100% Ópera inmersiva</em>, Regie de Misionera. <strong>Centro Cultural Recoleta</strong>, 2018.</li>
-    <li><strong>Premio Obra a desarrollar</strong>, Grupo Karicia. <strong>Bienal de Arte Joven, Centro Cultural Recoleta</strong>, 2017.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Exhibiciones individuales</h2>
-  <ul>
-    <li><em>Salamanquera</em>, Komuna, 2023.</li>
-    <li><em>Movimientos Variables</em>, Perfuch en UV Estudios, 2019.</li>
-    <li><em>Lo cursi es lo nuestro</em>, Isla Flotante, 2012.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Exhibiciones en colectivo</h2>
-  <ul>
-    <li><strong>El Castillo</strong>, 2024.</li>
-    <li><em>El castillo de arte y magia</em>, en ‘La llave y el testigo’ de Diego de Aduriz, MACBA, 2022.</li>
-    <li><em>Finis gloriæ mvndi homini</em> – Misionera. Ópera performática, curaduría Lolo & Lauti.</li>
-    <li><strong>Perfuch 4K</strong>, UV Estudios, 2019.</li>
-    <li><em>Sopa de Agua</em>, Ópera performática, 2019.</li>
-    <li><em>100%</em>, Ópera inmersiva – Misionera, Premio Radar, Centro Cultural Recoleta, 2018.</li>
-    <li><em>Trabajos y Amarres</em> – Misionera, Perfuch, UV Estudios, 2018.</li>
-    <li><em>Seguimos Teniendo Dedos</em>, Misionera, curaduría de Lolo&Lauti, UV Estudios, 2018.</li>
-    <li><em>Para Mi</em>, Revista online de crítica de arte – Misionera, 2018–2021.</li>
-    <li><em>Compañía Naviera del Litoral S.A.</em>, curaduría Lara Marmor, Patricio Larrambebere y Marcela Sinclair.</li>
-    <li>Premio Obra a Desarrollar, <strong>Bienal de Arte Joven, Centro Cultural Recoleta</strong>, 2017.</li>
-    <li><strong>Beca Toddy</strong>, movilidad para artistas sub 30 – Misionera, 2015.</li>
-    <li><strong>Bienal Internacional del Pensamiento Paralelo</strong>, Misionera, Museo Altos de Elorriaga, 2016.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Trabajos, investigaciones y colaboraciones</h2>
-  <ul>
-    <li><strong>Kioskera</strong>: fiesta y sello discográfico, 2022–2024.</li>
-    <li><strong>CeZaBe</strong>: colectivo raver y productora de freepass, 2022–2024.</li>
-    <li><strong>Evolución Fungi</strong>: proyecto colectivo de investigación y divulgación micológica, 2022–2024.</li>
-  </ul>
-</section>
-
-  </section>
-
-  <!-- Script carrusel -->
   <script>
-    let index = 0;
-    const slides = document.querySelectorAll('.slide');
+    // Script para hacer que cada item tenga altura dinámica según su contenido (masonry básico)
+    window.addEventListener('load', () => {
+      const gallery = document.getElementById('gallery');
+      const rowHeight = parseInt(window.getComputedStyle(gallery).getPropertyValue('grid-auto-rows'));
+      const rowGap = parseInt(window.getComputedStyle(gallery).getPropertyValue('gap'));
+      
+      gallery.querySelectorAll('.gallery-item').forEach(item => {
+        const contentHeight = item.querySelector('img').getBoundingClientRect().height;
 
-    function cambiarSlide(dir) {
-      slides[index].classList.remove('active');
-      index = (index + dir + slides.length) % slides.length;
-      slides[index].classList.add('active');
-    }
+        const rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
+        item.style.gridRowEnd = `span ${rowSpan}`;
+      });
+    });
+
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+  img.addEventListener('click', function() {
+    document.getElementById('lightbox-img').src = this.src;
+    document.getElementById('lightbox-img').alt = this.alt;
+    const caption = this.parentElement.querySelector('.caption')?.textContent || '';
+    document.getElementById('lightbox-caption').textContent = caption;
+    document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  });
+});
+
+document.querySelector('.close').onclick = function() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = ''; // Restore scroll
+};
+
+document.getElementById('lightbox').onclick = function(e) {
+  if (e.target === this) { // Click outside image closes
+    this.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+};
+
   </script>
 
 </body>
