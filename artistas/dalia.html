@@ -2,188 +2,262 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dalia DesAmor – El Castillo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DALIA DESAMOR – El Castillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/sidebar.css" />
   <style>
-    .carrusel {
-      position: relative;
-      max-width: 600px;
-      margin: 3rem auto 1rem auto;
-      text-align: center;
-    }
-
-    .slide {
-    display: none;
-    text-align: center;
-    }
-
-    .slide.active {
-    display: block;
-    }
-
-    .slide img {
-    width: 100%;
-    height: auto;
-    }
-
-
-    .arrow {
-      font-size: 2rem;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
+       body {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 1rem;
+      background: #fff;
       color: #333;
+      padding-left: 250px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-auto-rows: 10px;
+      gap: 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
       cursor: pointer;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      transition: transform 0.3s ease;
+      background-color: transparent; /* importante quitar fondo */
+      border-radius: 0; 
     }
 
-    .arrow.left {
-      left: 0;
+    .gallery-item:hover {
+      transform: scale(1.05);
+      z-index: 2;
     }
 
-    .arrow.right {
-      right: 0;
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      border-radius: 0; 
     }
 
     .caption {
-    font-size: 0.9rem;
-    font-family: 'Playfair Display', sans-serif;
-    margin-top: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 6px 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    border-radius: 0 0 8px 8px;
+    z-index: 2;
+    /* NEW: Remove height from layout flow */
+    height: auto;
+    width: 100%;
+    border-radius: 0; 
+  }
+
+
+    .gallery-item:hover .caption {
+      opacity: 1;
     }
 
-    .bio {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      font-family: 'Playfair Display', sans-serif;
-      line-height: 1.6;
+
+    /* Responsive for small screens */
+    @media (max-width: 800px) {
+      .caption {
+    display: none !important;
+  }
+       body {
+    padding-left: 0 !important;
+    padding: 0 !important;
+  }
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+      .sidebar { width: 100vw; position: fixed; }
+      h1 { font-size: 1.2rem; }
+
+        
+  .lightbox-img { max-width: 95vw; max-height: 50vh; }
+  .close { top: 0.7rem; right: 1.2rem; font-size: 2rem; }
     }
 
-    .bio a {
-      text-decoration: underline;
-      color: black;
-    }
+    .lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 70vh;
+  border-radius: 0;
+  box-shadow: 0 4px 20px #000b;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+.lightbox-caption {
+  color: #fff;
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 90vw;
+  margin-bottom: 1.5rem;
+}
+
+.close {
+  color: #fff;
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 10001;
+  text-shadow: 0 2px 8px #000;
+  user-select: none;
+}
+
+    /* Este JS hace que cada item tenga altura dinámica para el masonry */
   </style>
 </head>
 <body>
 
-  <!-- Sidebar y Burger -->
-  <input type="checkbox" id="menu-toggle" />
+   <input type="checkbox" id="menu-toggle" />
   <label for="menu-toggle" class="burger">&#9776;</label>
 
-<div class="sidebar">
-  <ul>
-    <li><a href="../index.html">EL CASTILLO</a></li>
-    <li><a href="../artistas.html">ARTISTAS </a></li>
-    <li><a href="../about.html">SOBRE EL CASTILLO</a></li>
-    <li><a href="#noticias">NOTICIAS</a></li>
-    <li><a href="../muestras.html">MUESTRAS</a></li>
-  </ul>
-</div>
+    <div class="sidebar">
+    <ul>
+        <li><a href="../index.html">EL CASTILLO</a></li>
+        <li><a href="../artistas.html">ARTISTAS </a></li>
+        <li><a href="../about.html">SOBRE EL CASTILLO</a></li>
+        <li><a href="#noticias">NOTICIAS</a></li>
+        <li><a href="../muestras.html">MUESTRAS</a></li>
+    </ul>
+    </div>
 
-  <!-- Galería de obras -->
-  <div class="carrusel">
-    <button class="arrow left" onclick="cambiarSlide(-1)">&#10094;</button>
+  <h1>DALIA DESAMOR</h1>
 
+  <div class="gallery" id="gallery">
     <!-- Reemplazar imágenes -->
-    <div class="slide active">
+    <div class="gallery-item">
     <img src="../img/obra-dalia.png" alt="Obra 1" />
     <div class="caption"></div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-dalia-2.png" alt="Obra 2" />
     <div class="caption"></div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-dalia-3.png" alt="Obra 3" />
     <div class="caption"></div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-dalia-4.png" alt="Obra 3" />
     <div class="caption"></div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-dalia-5.png" alt="Obra 3" />
     <div class="caption"></div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-dalia-6.png" alt="Obra 3" />
     <div class="caption"></div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-dalia-7.png" alt="Obra 3" />
     <div class="caption"></div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-dalia-8.png" alt="Obra 3" />
     <div class="caption"></div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-dalia-9.png" alt="Obra 3" />
     <div class="caption"></div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-dalia-10.png" alt="Obra 3" />
     <div class="caption"></div>
     </div>
-
-    <button class="arrow right" onclick="cambiarSlide(1)">&#10095;</button>
-  
   </div>
 
-  <!-- Biografía -->
-  <section class="bio">
+  <!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
 
-    <p><strong>Dalia DesAmor</strong> ( Rosario, 1990 )
-    es una artista visual y animadora nacida en Rosario, Argentina. Se formó en la Escuela para
-    Animadores de Rosario. Su trabajo combina medios visuales diversos —desde el dibujo, la
-    performance, hasta la animación experimental.</p>
-    <p>Desde 2020 participa activamente en exposiciones colectivas, tanto en espacios
-    independientes como en instituciones de arte contemporáneo.
-    En 2020 Formó parte de Otra feria de arte – Edición Jóvenes Artistas Americanos
-    En 2021 en el marco de la exposición “Mi cuerpo eléctrico” de Diego de Aduriz, participó
-    junto a “El Castillo“ en la muestra colectiva expuesta en la galería Aldo de Sousa.
-    También participó en la muestra Geometría Polisentimental en MUNAR Arte, y
-    en la muestra “Explorar el azar” coordinada por Pauline Fondevila en Bon Scott, Rosario.
-    En 2022 participó en el marco de la muestra antológica “La llave y el testigo” de Diego de
-    Aduriz junto a “El Castillo” en la muestra colectiva exhibida en en el Museo MACBA.
-    Ese mismo año, presentó dos cortos animados en el Ciclo Audiovisual Internacional Querer
-    "Inclusiva",</p>
-    <p>2023 participó en “El Castillo” en la muestra colectiva “Si tienen flores para qué
-    necesitan a Dios “. </p>
-    <p> 2024 participó en la muestra colectiva de “EL castillo” en La Greco bar.
-    También en Casa Moco con otra muestra colectiva.
-    Participó del proyecto “Como queremos vivir juntx” con el apoyo del Goethe institut, la
-    Fundación Medifé, la Alianza Francesa y el fondo franco-alemán donde realizó un video-arte
-    con el mismo título.</p>
-    <p>En el mismo año, cursó la cátedra de Posporno de la UNR con la coordinación d Mauro
-    Guzmán y participó de la muestra colectiva de la misma.</p>
-    <p><a href="../cv/Dalia DesAmor.pdf">Descargar CV (pdf)</a></p>
-  </section>
-
-  <!-- Script carrusel -->
   <script>
-    let index = 0;
-    const slides = document.querySelectorAll('.slide');
+    // Script para hacer que cada item tenga altura dinámica según su contenido (masonry básico)
+    window.addEventListener('load', () => {
+      const gallery = document.getElementById('gallery');
+      const rowHeight = parseInt(window.getComputedStyle(gallery).getPropertyValue('grid-auto-rows'));
+      const rowGap = parseInt(window.getComputedStyle(gallery).getPropertyValue('gap'));
+      
+      gallery.querySelectorAll('.gallery-item').forEach(item => {
+        const contentHeight = item.querySelector('img').getBoundingClientRect().height;
 
-    function cambiarSlide(dir) {
-      slides[index].classList.remove('active');
-      index = (index + dir + slides.length) % slides.length;
-      slides[index].classList.add('active');
-    }
+        const rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
+        item.style.gridRowEnd = `span ${rowSpan}`;
+      });
+    });
+
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+  img.addEventListener('click', function() {
+    document.getElementById('lightbox-img').src = this.src;
+    document.getElementById('lightbox-img').alt = this.alt;
+    const caption = this.parentElement.querySelector('.caption')?.textContent || '';
+    document.getElementById('lightbox-caption').textContent = caption;
+    document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  });
+});
+
+document.querySelector('.close').onclick = function() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = ''; // Restore scroll
+};
+
+document.getElementById('lightbox').onclick = function(e) {
+  if (e.target === this) { // Click outside image closes
+    this.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+};
+
   </script>
 
 </body>

@@ -2,92 +2,150 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Interkevs – El Castillo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GABRIELA PINO – El Castillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/sidebar.css" />
   <style>
-    .carrusel {
-      position: relative;
-      max-width: 600px;
-      margin: 3rem auto 1rem auto;
-      text-align: center;
-    }
-
-   .slide {
-    display: none;
-    text-align: center;
-    }
-
-    .slide.active {
-    display: block;
-    }
-
-    .slide img {
-    width: 100%;
-    height: auto;
-    }
-
-    .arrow {
-      font-size: 2rem;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
+       body {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 1rem;
+      background: #fff;
       color: #333;
+      padding-left: 250px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-auto-rows: 10px;
+      gap: 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
       cursor: pointer;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      transition: transform 0.3s ease;
+      background-color: transparent; /* importante quitar fondo */
+      border-radius: 0; 
     }
 
-    .arrow.left {
-      left: 0;
+    .gallery-item:hover {
+      transform: scale(1.05);
+      z-index: 2;
     }
 
-    .arrow.right {
-      right: 0;
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      border-radius: 0; 
     }
 
     .caption {
-    font-size: 0.9rem;
-    font-family: 'Playfair Display', sans-serif;
-    margin-top: 0.5rem;
-    }
-    .bio {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      font-family: 'Playfair Display', sans-serif;
-      line-height: 1.6;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 6px 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    border-radius: 0 0 8px 8px;
+    z-index: 2;
+    /* NEW: Remove height from layout flow */
+    height: auto;
+    width: 100%;
+    border-radius: 0; 
+  }
+
+
+    .gallery-item:hover .caption {
+      opacity: 1;
     }
 
-    .bio a {
-      text-decoration: underline;
-      color: black;
+
+    /* Responsive for small screens */
+    @media (max-width: 800px) {
+      .caption {
+    display: none !important;
+  }
+       body {
+    padding-left: 0 !important;
+    padding: 0 !important;
+  }
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+      .sidebar { width: 100vw; position: fixed; }
+      h1 { font-size: 1.2rem; }
+
+        
+  .lightbox-img { max-width: 95vw; max-height: 50vh; }
+  .close { top: 0.7rem; right: 1.2rem; font-size: 2rem; }
     }
 
-      .columns {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-    .column {
-      flex: 1;
-      min-width: 300px;
-    }
-    p {
-      margin: 0.3em 0;
-    }
-    strong {
-      display: inline-block;
-      margin-top: 1em;
-    }
+    .lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 70vh;
+  border-radius: 0;
+  box-shadow: 0 4px 20px #000b;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+.lightbox-caption {
+  color: #fff;
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 90vw;
+  margin-bottom: 1.5rem;
+}
+
+.close {
+  color: #fff;
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 10001;
+  text-shadow: 0 2px 8px #000;
+  user-select: none;
+}
+
+    /* Este JS hace que cada item tenga altura dinámica para el masonry */
   </style>
 </head>
 <body>
 
-  <!-- Sidebar y Burger -->
-  <input type="checkbox" id="menu-toggle" />
+   <input type="checkbox" id="menu-toggle" />
   <label for="menu-toggle" class="burger">&#9776;</label>
 
     <div class="sidebar">
@@ -100,132 +158,96 @@
     </ul>
     </div>
 
-  <!-- Galería de obras -->
-  <div class="carrusel">
-    <button class="arrow left" onclick="cambiarSlide(-1)">&#10094;</button>
+  <h1>GABRIELA PINO</h1>
 
-    <!-- Reemplazar imágenes -->
-    <div class="slide active">
+  <div class="gallery" id="gallery">
+     <div class="gallery-item">
     <img src="../img/gabi-pino-1.png" alt="Obra 1" />
     <div class="caption">Naturaleza Lúdica, La ira de Dios, 2015. Instalación Site-specific. Hojalata y zinc. 8  x 4  x 4 m</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/gabi-pino-2.png" alt="Obra 2" />
     <div class="caption">Naturaleza Lúdica II, Después de la tormenta, Santa Fe, Arg, 2016. Hojalata y zinc. Medidas variables</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/gabi-pino-3.png" alt="Obra 3" />
     <div class="caption">Naturaleza Lúdica III, Jardín botánico norte, ciudad de Santa Fe, Arg., 2016. Hojalata y zinc. Medidas variables</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/gabi-pino-4.png" alt="Obra 3" />
     <div class="caption">Una caverna de amor(detalle). Mixta sobre tela. 100 x 100 cm</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/gabi-pino-5.png" alt="Obra 3" />
     <div class="caption">Mi nombre es Blancanieves, 2011. Maderas y manzanas. 25 m2</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/gabi-pino-6.png" alt="Obra 3" />
     <div class="caption">Mi nombre es Blancanieves, 2011. Maderas y manzanas. 25 m2</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/gabi-pino-7.png" alt="Obra 3" />
     <div class="caption">El coleccionista, 2014. Materiales diversos. 3m x 2m x 0,80m</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/gabi-pino-8.png" alt="Obra 3" />
     <div class="caption">Los pájaros, 2023. Bajo relieve realizado con materiales de construcción en seco. 100 x 100 cm</div>
     </div>
+    
+  </div>
 
-    <button class="arrow right" onclick="cambiarSlide(1)">&#10095;</button>
-   </div> 
-
-  <!-- Biografía -->
-  <section class="bio">
-
-    <p><strong>Gabriela Pino</strong> (CABA, 1975)</p>
-    <div class="columns">
-    <div class="column">
-    <p><strong>Antecedentes artísticos</strong></p>
-      <p><strong>Estudios formales:</strong></p>
-        <p><strong>2003</strong>  E.A.V. Antonio Berni</p>
-        <p><strong>1990/2000</strong>  E.N.B.A. LOLA MORA</p>
-      <p>Estudios informales:</p>
-        <p><strong>2023</strong> Taller de Danza, Metodo Alexander con Marina Giancaspro</p>
-        <p><strong>2023</strong>  Taller de Filosofia con Pablo Dreizik</p>
-        <p><strong>2015</strong>  Taller con Marina De Caro. </p>
-        <p><strong>2014</strong>  Creación audiovisual con Gabriel Rud, Fundación telefónica</p>
-        <p><strong>2014</strong> Cine experimental con Gustavo Crivilone, M.A.M.B.A. </p>
-        <p><strong>2013</strong> Procesing con Tomas rawski, Fundación telefónica.</p>
-        <p><strong>2012</strong> Documenta, Mariana Rodríguez Iglesias, MALBA.</p>
-        <p><strong>2012/11</strong> Desarrollo de objetos móviles, Fundación Telefónica</p>
-        <p><strong>2007</strong>  Seminario de Arte y políticaJuan Carlos Romero U.N.L.M.</p>
-        <p><strong>2005</strong> Taller con Horacio Zabala</p>
-
-       
-          </div>
-          <div class="column">
-             <p><strong>Exhibiciones individuales</strong></p>
-          <p><strong>2016</strong> Fundación Osde espacio contemporáneo Bs. As. Argentina.</p>
-          <p><strong>2016</strong> Naturaleza lúdica II C.E.C. (Centro experimental del color) Santa Fe, Argentina.</p>
-          <p><strong>2015</strong> Naturaleza lúdica, La Ira de Dios, Mecenazgo cultural, Bs. As.</p>
-          <p>Argentina.</p>
-          <p>2014</strong> El coleccionista, Mi Micromuseo, Bs. As. Argentina.</p>
-          <p><strong>2011</strong> Mi nombre es Blancanieves, Instalación, ThisIsNotAGallery, Bs. As.</p>
-          <p>Argentina.</p>
-          <p><strong>2010</strong> Fotolog: Figth The Real Enemy, ThisIsNotAGallery, Bs. As. Argentina.</p>
-          <p><strong>2010</strong> Instrucciones para el uso de un traje fluorescente, Bs. As. Argentina.</p>
-          <p><strong>2006</strong> Devórame otra vez, Espacio Giesso, Bs. As. Argentina.</p>
-          <p><strong>2005</strong> Make me beautiful, Galería 1/1 caja de arte, Bs. As. Argentina.</p>
-          </div>
-
-          <div class="column">
-            <p><strong>Exhibiciones Grupales</strong></p>
-          <p><strong>2024</strong> El castillo de arte y magia, sede Monserrat, Bs. As, Argentina.</p>
-          <p><strong>2023</strong> Showcase MICA, artes visuales, MUNAR, Bs As. Argentina.</p>
-          <p><strong>2023</strong> Premio 8M, Dirección Nacional de Museos,CCK. Bs As. Argentina.</p>
-          <p><strong>2022</strong> El castillo de arte y magia, MACBA, Bs. As, Argentina.</p>
-          <p><strong>2021</strong> Arte en juego, Fundación PROA Bs. As. Argentina.</p>
-          <p><strong>2020</strong> Suspensa, BSM Art-building, Bs. As. Argentina.</p>
-          <p><strong>2019</strong> Patio de salvataje, Centro Cultural Recoleta, Bs As. Argentina.</p>
-          <p><strong>2018</strong> El centro en movimiento CCK. Bs As. Argentina.</p>
-          <p><strong>2017</strong> Concurso de artes visuales, Fondo nacional de las artes, escultura</p>
-          <p><strong>2015</strong> Mailart, CCK, Bs. As. Argentina.</p>
-          <p><strong>2015</strong> Instalaciones y medios alternativos, Salón nacional de artes visuales, Argentina</p>
-          <p><strong>2014</strong> Videoarte, Fundación Telefonica, Bs. As. Argentina.</p>
-          <p><strong>2014</strong> Juegos, Centro cultural Recoleta, Bs. As. Argentina.</p>
-          <p><strong>2013</strong> ArteBA, Argentina.</p>
-          <p><strong>2013</strong> F.D.A.C.M.A., Bs. As. Argentina.</p>
-          <p><strong>2012</strong> Adriana Budich Arte contemporáneo, Bs. As. Argentina.</p>
-          <p><strong>2012</strong> Objetos móviles, Fundación Telefónica, Bs. As. Argentina.</p>
-          <p><strong>2011</strong> Manguruyú Project, ThisIsNotAGallery, Bs. As. Argentina.</p>
-          <p><strong>2011</strong> ArteBA, Bs. As. Argentina.</p>
-          <p><strong>2011</strong>2 Expotrastiendas, Bs. As. Argentina.</p>
-          <p><strong>2010</strong> EXIT Nº 3, Vortice, Bs. As. Argentina.</p>
-          <p><strong>2010</strong> EXIT Nº 2, Vortice, Bs. As. Argentina.</p>
-          </div>
+  <!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
- </strong>   <p><a href="../pdfs/[cv-nombre].pdf" target="_blank">Descargar CV (pdf)</a></p>
-  </section>
 
-  <!-- Script carrusel -->
   <script>
-    let index = 0;
-    const slides = document.querySelectorAll('.slide');
+    // Script para hacer que cada item tenga altura dinámica según su contenido (masonry básico)
+    window.addEventListener('load', () => {
+      const gallery = document.getElementById('gallery');
+      const rowHeight = parseInt(window.getComputedStyle(gallery).getPropertyValue('grid-auto-rows'));
+      const rowGap = parseInt(window.getComputedStyle(gallery).getPropertyValue('gap'));
+      
+      gallery.querySelectorAll('.gallery-item').forEach(item => {
+        const contentHeight = item.querySelector('img').getBoundingClientRect().height;
 
-    function cambiarSlide(dir) {
-      slides[index].classList.remove('active');
-      index = (index + dir + slides.length) % slides.length;
-      slides[index].classList.add('active');
-    }
+        const rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
+        item.style.gridRowEnd = `span ${rowSpan}`;
+      });
+    });
+
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+  img.addEventListener('click', function() {
+    document.getElementById('lightbox-img').src = this.src;
+    document.getElementById('lightbox-img').alt = this.alt;
+    const caption = this.parentElement.querySelector('.caption')?.textContent || '';
+    document.getElementById('lightbox-caption').textContent = caption;
+    document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  });
+});
+
+document.querySelector('.close').onclick = function() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = ''; // Restore scroll
+};
+
+document.getElementById('lightbox').onclick = function(e) {
+  if (e.target === this) { // Click outside image closes
+    this.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+};
+
   </script>
 
 </body>
