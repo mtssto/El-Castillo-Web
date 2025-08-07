@@ -2,75 +2,150 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Interkevs – El Castillo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> Interkevs – El Castillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/sidebar.css" />
   <style>
-    .carrusel {
-      position: relative;
-      max-width: 600px;
-      margin: 3rem auto 1rem auto;
-      text-align: center;
-    }
-
-   .slide {
-    display: none;
-    text-align: center;
-    }
-
-    .slide.active {
-    display: block;
-    }
-
-    .slide img {
-    width: 100%;
-    height: auto;
-    }
-
-    .arrow {
-      font-size: 2rem;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
+       body {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 1rem;
+      background: #fff;
       color: #333;
+      padding-left: 250px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-auto-rows: 10px;
+      gap: 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
       cursor: pointer;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      transition: transform 0.3s ease;
+      background-color: transparent; /* importante quitar fondo */
+      border-radius: 0; 
     }
 
-    .arrow.left {
-      left: 0;
+    .gallery-item:hover {
+      transform: scale(1.05);
+      z-index: 2;
     }
 
-    .arrow.right {
-      right: 0;
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      border-radius: 0; 
     }
 
     .caption {
-    font-size: 0.9rem;
-    font-family: 'Playfair Display', sans-serif;
-    margin-top: 0.5rem;
-    }
-    .bio {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      font-family: 'Playfair Display', sans-serif;
-      line-height: 1.6;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 6px 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    border-radius: 0 0 8px 8px;
+    z-index: 2;
+    /* NEW: Remove height from layout flow */
+    height: auto;
+    width: 100%;
+    border-radius: 0; 
+  }
+
+
+    .gallery-item:hover .caption {
+      opacity: 1;
     }
 
-    .bio a {
-      text-decoration: underline;
-      color: black;
+
+    /* Responsive for small screens */
+    @media (max-width: 800px) {
+      .caption {
+    display: none !important;
+  }
+       body {
+    padding-left: 0 !important;
+    padding: 0 !important;
+  }
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+      .sidebar { width: 100vw; position: fixed; }
+      h1 { font-size: 1.2rem; }
+
+        
+  .lightbox-img { max-width: 95vw; max-height: 50vh; }
+  .close { top: 0.7rem; right: 1.2rem; font-size: 2rem; }
     }
+
+    .lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 70vh;
+  border-radius: 0;
+  box-shadow: 0 4px 20px #000b;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+.lightbox-caption {
+  color: #fff;
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 90vw;
+  margin-bottom: 1.5rem;
+}
+
+.close {
+  color: #fff;
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 10001;
+  text-shadow: 0 2px 8px #000;
+  user-select: none;
+}
+
+    /* Este JS hace que cada item tenga altura dinámica para el masonry */
   </style>
 </head>
 <body>
 
-  <!-- Sidebar y Burger -->
-  <input type="checkbox" id="menu-toggle" />
+   <input type="checkbox" id="menu-toggle" />
   <label for="menu-toggle" class="burger">&#9776;</label>
 
     <div class="sidebar">
@@ -83,104 +158,113 @@
     </ul>
     </div>
 
-  <!-- Galería de obras -->
-  <div class="carrusel">
-    <button class="arrow left" onclick="cambiarSlide(-1)">&#10094;</button>
+  <h1>INTERKEVS</h1>
 
-    <!-- Reemplazar imágenes -->
-    <div class="slide active">
+  <div class="gallery" id="gallery">
+    <div class="gallery-item">
     <img src="../img/obra-kev.png" alt="Obra 1" />
     <div class="caption">'No entiendo nada'. Vinilos holográficos y traslucidos sobre vidrio. 22.5 cm diametro.</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-kev-2.png" alt="Obra 2" />
     <div class="caption">PALABRA DE ORO. Vinilos holográficos y traslucidos sobre vidrio. 22.5 x 26 cm.</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-kev-3.png" alt="Obra 3" />
     <div class="caption">'EN Q'ME CONVERTÍ?'. Vinilos holográficos y traslucidos sobre vidrio. 22.5 cm de diámetro.</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-kev-4.png" alt="Obra 3" />
     <div class="caption">'EN Q'ME CONVERTÍ?. Vinilos holográficos y traslucidos sobre vidrio. 33 cm de diametro.</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-kev-5.png" alt="Obra 3" />
     <div class="caption">'Ahora solo te veo en visiones'. Vinilos holográficos y traslucidos sobre vidrio. 60 x б0 cm</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-kev-6.png" alt="Obra 3" />
     <div class="caption">'Consciencia Fungi'. Vinilos holográficos y traslucidos sobre vidrio. 30 x 30 cm</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-kev-7.png" alt="Obra 3" />
     <div class="caption">'La madre regó al limonero
 porque no crecía,
 y después dio muchisimos..'. 30 x 30 cm</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-kev-8.png" alt="Obra 3" />
     <div class="caption">'Todo el Tiempo del Mundo Llega'. 30 x 30 cm</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-kev-9.png" alt="Obra 3" />
     <div class="caption">'Cacao'. 30 x 30 cm</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-kev-10.png" alt="Obra 3" />
     <div class="caption">'Lagoa Mediiação
 refleiida em meu Coração'. 30 x 30 cm</div>
     </div>
 
-    <div class="slide">
+    <div class="gallery-item">
     <img src="../img/obra-kev-11.png" alt="Obra 3" />
     <div class="caption">'PODÉS MANTENER TU PALABRA UN MES?'. 1 mi x 60 cm</div>
     </div>
+  </div>
 
-    <button class="arrow right" onclick="cambiarSlide(1)">&#10095;</button>
-   </div> 
+  <!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
 
-  <!-- Biografía -->
-  <section class="bio">
-    <p><strong>Interkevs</strong> (Navarro, 1990) – El carácter de su obra profundiza sobre un mundo místico. Donde sin perder la conciencia, se puede enirar a un
-mundo de ensueño que, frecuetemente parece más real que el mundo normal. Cada obra es un pequeño pasaje.
-donde se capturan momentos de ese mundo que aguarda latente a ser visto.
-.</p>
-
-    <p>Exposiciones
-        <p><strong>2024</strong> Colectiva - El Casiillo de Diego De Aduriz La Greco - САВА</p>
-        <p><strong>2023</strong> Colectiva - El Casiillo de Diego De Aduriz- CABA</p>
-        <p><strong>2022</strong> Colectiva - A.F.A.B. Asociación Fuiurisia Anii Binaria - Muiio Radio - САВА</p>
-        <p><strong>2022</strong> Colectiva - El Casiillo de Diego De Aduriz - MACBА</p>
-        <p><strong>2021</strong> Colectiva El Casiillo de Diegó De Aduriz - Aldo de Sousa Galeria - CAВА</p>
-        <p><strong>2020</strong> Colectiva - El Dije Galeria САВА</p>
-        <p><strong>2019</strong> Individual Salón Biblioieca Pública Ameghino - Luján</p>
-        <p><strong>2018</strong> Colectiva IX Salón Anual Nacional del Bicenienario de dibujo - Enire Rios</p>
-        <p><strong>2016</strong> Colectiva Dibuferia de Diego de Aduriz - Plaiaforma Lavardén - Rosario</p>
-        <p><strong>2014</strong> Individual Aurea - Patio del Liceo - CABА</p>
-
-    <p><a href="../pdfs/[cv-nombre].pdf" target="_blank">Descargar CV (pdf)</a></p>
-  </section>
-
-  <!-- Script carrusel -->
   <script>
-    let index = 0;
-    const slides = document.querySelectorAll('.slide');
+    // Script para hacer que cada item tenga altura dinámica según su contenido (masonry básico)
+    window.addEventListener('load', () => {
+      const gallery = document.getElementById('gallery');
+      const rowHeight = parseInt(window.getComputedStyle(gallery).getPropertyValue('grid-auto-rows'));
+      const rowGap = parseInt(window.getComputedStyle(gallery).getPropertyValue('gap'));
+      
+      gallery.querySelectorAll('.gallery-item').forEach(item => {
+        const contentHeight = item.querySelector('img').getBoundingClientRect().height;
 
-    function cambiarSlide(dir) {
-      slides[index].classList.remove('active');
-      index = (index + dir + slides.length) % slides.length;
-      slides[index].classList.add('active');
-    }
+        const rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
+        item.style.gridRowEnd = `span ${rowSpan}`;
+      });
+    });
+
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+  img.addEventListener('click', function() {
+    document.getElementById('lightbox-img').src = this.src;
+    document.getElementById('lightbox-img').alt = this.alt;
+    const caption = this.parentElement.querySelector('.caption')?.textContent || '';
+    document.getElementById('lightbox-caption').textContent = caption;
+    document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  });
+});
+
+document.querySelector('.close').onclick = function() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = ''; // Restore scroll
+};
+
+document.getElementById('lightbox').onclick = function(e) {
+  if (e.target === this) { // Click outside image closes
+    this.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+};
+
   </script>
 
 </body>

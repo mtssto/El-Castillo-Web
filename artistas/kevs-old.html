@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Interkevs – El Castillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/sidebar.css" />
+  <style>
+    .carrusel {
+      position: relative;
+      max-width: 600px;
+      margin: 3rem auto 1rem auto;
+      text-align: center;
+    }
+
+   .slide {
+    display: none;
+    text-align: center;
+    }
+
+    .slide.active {
+    display: block;
+    }
+
+    .slide img {
+    width: 100%;
+    height: auto;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .arrow.left {
+      left: 0;
+    }
+
+    .arrow.right {
+      right: 0;
+    }
+
+    .caption {
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', sans-serif;
+    margin-top: 0.5rem;
+    }
+    .bio {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-family: 'Playfair Display', sans-serif;
+      line-height: 1.6;
+    }
+
+    .bio a {
+      text-decoration: underline;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar y Burger -->
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="burger">&#9776;</label>
+
+    <div class="sidebar">
+    <ul>
+        <li><a href="../index.html">EL CASTILLO</a></li>
+        <li><a href="../artistas.html">ARTISTAS </a></li>
+        <li><a href="../about.html">SOBRE EL CASTILLO</a></li>
+        <li><a href="#noticias">NOTICIAS</a></li>
+        <li><a href="../muestras.html">MUESTRAS</a></li>
+    </ul>
+    </div>
+
+  <!-- Galería de obras -->
+  <div class="carrusel">
+    <button class="arrow left" onclick="cambiarSlide(-1)">&#10094;</button>
+
+    <!-- Reemplazar imágenes -->
+    <div class="slide active">
+    <img src="../img/obra-kev.png" alt="Obra 1" />
+    <div class="caption">'No entiendo nada'. Vinilos holográficos y traslucidos sobre vidrio. 22.5 cm diametro.</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-kev-2.png" alt="Obra 2" />
+    <div class="caption">PALABRA DE ORO. Vinilos holográficos y traslucidos sobre vidrio. 22.5 x 26 cm.</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-kev-3.png" alt="Obra 3" />
+    <div class="caption">'EN Q'ME CONVERTÍ?'. Vinilos holográficos y traslucidos sobre vidrio. 22.5 cm de diámetro.</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-kev-4.png" alt="Obra 3" />
+    <div class="caption">'EN Q'ME CONVERTÍ?. Vinilos holográficos y traslucidos sobre vidrio. 33 cm de diametro.</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-kev-5.png" alt="Obra 3" />
+    <div class="caption">'Ahora solo te veo en visiones'. Vinilos holográficos y traslucidos sobre vidrio. 60 x б0 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-kev-6.png" alt="Obra 3" />
+    <div class="caption">'Consciencia Fungi'. Vinilos holográficos y traslucidos sobre vidrio. 30 x 30 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-kev-7.png" alt="Obra 3" />
+    <div class="caption">'La madre regó al limonero
+porque no crecía,
+y después dio muchisimos..'. 30 x 30 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-kev-8.png" alt="Obra 3" />
+    <div class="caption">'Todo el Tiempo del Mundo Llega'. 30 x 30 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-kev-9.png" alt="Obra 3" />
+    <div class="caption">'Cacao'. 30 x 30 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-kev-10.png" alt="Obra 3" />
+    <div class="caption">'Lagoa Mediiação
+refleiida em meu Coração'. 30 x 30 cm</div>
+    </div>
+
+    <div class="slide">
+    <img src="../img/obra-kev-11.png" alt="Obra 3" />
+    <div class="caption">'PODÉS MANTENER TU PALABRA UN MES?'. 1 mi x 60 cm</div>
+    </div>
+
+    <button class="arrow right" onclick="cambiarSlide(1)">&#10095;</button>
+   </div> 
+
+  <!-- Biografía -->
+  <section class="bio">
+    <p><strong>Interkevs</strong> (Navarro, 1990) – El carácter de su obra profundiza sobre un mundo místico. Donde sin perder la conciencia, se puede enirar a un
+mundo de ensueño que, frecuetemente parece más real que el mundo normal. Cada obra es un pequeño pasaje.
+donde se capturan momentos de ese mundo que aguarda latente a ser visto.
+.</p>
+
+    <p>Exposiciones
+        <p><strong>2024</strong> Colectiva - El Casiillo de Diego De Aduriz La Greco - САВА</p>
+        <p><strong>2023</strong> Colectiva - El Casiillo de Diego De Aduriz- CABA</p>
+        <p><strong>2022</strong> Colectiva - A.F.A.B. Asociación Fuiurisia Anii Binaria - Muiio Radio - САВА</p>
+        <p><strong>2022</strong> Colectiva - El Casiillo de Diego De Aduriz - MACBА</p>
+        <p><strong>2021</strong> Colectiva El Casiillo de Diegó De Aduriz - Aldo de Sousa Galeria - CAВА</p>
+        <p><strong>2020</strong> Colectiva - El Dije Galeria САВА</p>
+        <p><strong>2019</strong> Individual Salón Biblioieca Pública Ameghino - Luján</p>
+        <p><strong>2018</strong> Colectiva IX Salón Anual Nacional del Bicenienario de dibujo - Enire Rios</p>
+        <p><strong>2016</strong> Colectiva Dibuferia de Diego de Aduriz - Plaiaforma Lavardén - Rosario</p>
+        <p><strong>2014</strong> Individual Aurea - Patio del Liceo - CABА</p>
+
+    <p><a href="../pdfs/[cv-nombre].pdf" target="_blank">Descargar CV (pdf)</a></p>
+  </section>
+
+  <!-- Script carrusel -->
+  <script>
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function cambiarSlide(dir) {
+      slides[index].classList.remove('active');
+      index = (index + dir + slides.length) % slides.length;
+      slides[index].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
