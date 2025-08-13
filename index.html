@@ -7,14 +7,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/topbar.css" />
 
 </head>
 <body>
-    <header class="topbar">
-      <h1 class="titulo">EL CASTILLO</h1>
 
-  </header>
+    <!-- ===== Top Navigation ===== -->
+<header class="topnav">
+  <a class="brand" href="index.html">EL CASTILLO</a>
+
+  <input id="nav-toggle" type="checkbox" aria-label="Abrir menú">
+  <label class="burger" for="nav-toggle" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </label>
+
+  <nav class="menu">
+    <a href="index.html">INICIO</a>
+    <!-- FIXED the malformed anchor -->
+    <a href="artistas.html">ARTISTAS</a> <!-- CHANGED -->
+    <a href="about.html">SOBRE EL CASTILLO</a>
+    <a href="#noticias">NOTICIAS</a>
+    <a href="muestras.html">MUESTRAS</a>
+  </nav>
+</header>
+
 
 <div class="slideshow-container">
   <img src="img/el-castillo.png" class="slide fade" />
@@ -27,19 +43,6 @@
 
  
 </body>
-
-<input type="checkbox" id="menu-toggle" />
-<label for="menu-toggle" class="burger">&#9776;</label>
-
-<div class="sidebar">
-  <ul>
-    <li><a href="index.html">EL CASTILLO</a></li>
-    <li><a href="artistas.html">ARTISTAS </a></li>
-    <li><a href="about.html">SOBRE EL CASTILLO</a></li>
-    <li><a href="#noticias">NOTICIAS</a></li>
-    <li><a href="muestras.html">MUESTRAS</a></li>
-  </ul>
-</div>
 
 <script>
   let currentIndex = 0;

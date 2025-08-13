@@ -1,40 +1,30 @@
-body {
-  background-color: #ffffff;
-  font-family: 'Impact', serif;
-  overflow: visible;
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 0;
-}
-
-.titulo {
-  font-size: 3rem;
-  margin: 1rem;
-  font-weight: bold;
-  font-family: 'Playfair Display', serif;
-  color: black;
-  text-align: center;
 }
 
 .slideshow-container {
   position: relative;
-  margin: 2rem auto;
+  height: calc(100vh - var(--nav-h)); /* full height minus navbar */
+  margin-top: var(--nav-h);
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden; /* hides any overflow */
 }
 
 .slide {
   display: none;
   width: 100%;
-  height: auto;
-  max-width: 600px;
+  height: 100%;
+  object-fit: contain; /* fit without cropping */
 }
-
 
 .slide.active {
   display: block;
   animation: fade 1s ease-in-out;
 }
+
 
 /* Efecto de fade */
 @keyframes fade {

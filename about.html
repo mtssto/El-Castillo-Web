@@ -6,29 +6,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
   <title>Sobre El Castillo</title>
   <link rel="stylesheet" href="css/about.css" />
-  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/topbar.css" />
 
 </head>
 <body>
 
-  <!-- Burger + Sidebar -->
-  <input type="checkbox" id="menu-toggle" />
-  <label for="menu-toggle" class="burger">&#9776;</label>
+  <header class="topnav">
+  <a class="brand" href="index.html">EL CASTILLO</a>
 
-<div class="sidebar">
-  <ul>
-    <li><a href="index.html">EL CASTILLO</a></li>
-    <li><a href="artistas.html">ARTISTAS </a></li>
-    <li><a href="about.html">SOBRE EL CASTILLO</a></li>
-    <li><a href="#noticias">NOTICIAS</a></li>
-    <li><a href="#novedades">MUESTRAS</a></li>
-  </ul>
-</div>
+  <input id="nav-toggle" type="checkbox" aria-label="Abrir menú">
+  <label class="burger" for="nav-toggle" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </label>
 
-  <!-- Contenido principal -->
-  <header class="topbar">
-    <h1 class="titulo">Sobre El Castillo</h1>
-  </header>
+  <nav class="menu">
+    <a href="index.html">INICIO</a>
+    <!-- FIXED the malformed anchor -->
+    <a href="artistas.html">ARTISTAS</a> <!-- CHANGED -->
+    <a href="about.html" class="active">SOBRE EL CASTILLO</a>
+    <a href="#noticias">NOTICIAS</a>
+    <a href="muestras.html">MUESTRAS</a>
+  </nav>
+</header>
+
 
   <main class="contenido">
     <section>

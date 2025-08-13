@@ -1,0 +1,96 @@
+/* css/topbar.css */
+
+/* Height token (override per-page if you need) */
+:root { --nav-h: 56px; }
+
+/* ===== TOP BAR ===== */
+.topnav {
+  position: fixed;
+  inset: 0 0 auto 0;               /* top:0; left:0; right:0 */
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  z-index: 1000;
+  color: #000;
+  background: linear-gradient(to bottom, rgba(0,0,0,.06), rgba(0,0,0,0));
+  backdrop-filter: blur(4px);
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+}
+
+/* Left brand */
+.brand {
+  text-decoration: none;
+  color: #000;
+  font-weight: 300;                 /* matches your page */
+  letter-spacing: .04em;
+}
+
+/* Centered page title */
+.page-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #000;
+  font-weight: 600;
+}
+
+/* Right link list */
+.menu {
+  margin-left: auto;
+  display: flex;
+  gap: 22px;
+}
+.menu a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 300;                 /* matches your page */
+  transition: opacity .2s ease;
+}
+.menu a:hover { opacity: .85; }
+.menu a.active { border-bottom: 2px solid #000; padding-bottom: 2px; }
+
+/* Burger toggle */
+#nav-toggle { display: none; }
+.burger {
+  width: 34px; height: 28px;
+  display: none;
+  margin-left: auto;
+  cursor: pointer;
+}
+.burger span {
+  display: block;
+  height: 3px;
+  background: #000;
+  margin: 6px 0;
+  transition: .25s;
+}
+
+/* ===== MOBILE MENU ===== */
+@media (max-width: 800px) {
+  .burger { display: block; }
+
+  .menu {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0; right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: #fff;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .25s ease;
+    border-top: 1px solid rgba(0,0,0,.1);
+  }
+  .menu a {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+
+  #nav-toggle:checked ~ .menu { max-height: 70vh; }
+  #nav-toggle:checked + .burger span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  #nav-toggle:checked + .burger span:nth-child(2) { opacity: 0; }
+  #nav-toggle:checked + .burger span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+}

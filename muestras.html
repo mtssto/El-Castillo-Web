@@ -7,24 +7,17 @@
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/topbar.css" />
   <style>
-    .topbar {
-      background-color: #ffffff;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      font-family: 'Impact', serif;
-    }
+    
 
     .muestras-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      margin-left: 200px; /* espacio para sidebar */
-    }
-
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  margin-top: var(--nav-h); /* pushes content below top bar */
+}
     .muestra {
       text-align: center;
       font-family: 'Playfair Display', serif;
@@ -66,11 +59,12 @@
       line-height: 1.4;
     }
 
-    @media screen and (max-width: 768px) {
-  /* FIX: Remove left margin/padding for content */
-  .muestras-container {
-    margin-left: 58px;
-    padding: 1rem 0.3rem;
+   @media (max-width: 768px){
+  .muestras-container{
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    margin-top: calc(var(--nav-h) + .5rem);
   }
 }
 
@@ -79,23 +73,23 @@
 </head>
 <body>
 
-  <!-- Sidebar -->
-  <input type="checkbox" id="menu-toggle" />
-  <label for="menu-toggle" class="burger">&#9776;</label>
+ <header class="topnav">
+  <a class="brand" href="index.html">EL CASTILLO</a>
 
-  <div class="sidebar">
-  <ul>
-    <li><a href="index.html">EL CASTILLO</a></li>
-    <li><a href="artistas.html">ARTISTAS </a></li>
-    <li><a href="about.html">SOBRE EL CASTILLO</a></li>
-    <li><a href="#noticias">NOTICIAS</a></li>
-    <li><a href="muestras.html">MUESTRAS</a></li>
-  </ul>
-</div>
+  <input id="nav-toggle" type="checkbox" aria-label="Abrir menú">
+  <label class="burger" for="nav-toggle" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </label>
 
-  <header class="topbar">
-    <h1 class="titulo">MUESTRAS</h1>
-  </header>
+  <nav class="menu">
+    <a href="index.html">INICIO</a>
+    <!-- FIXED the malformed anchor -->
+    <a href="artistas.html">ARTISTAS</a> <!-- CHANGED -->
+    <a href="about.html">SOBRE EL CASTILLO</a>
+    <a href="#noticias">NOTICIAS</a>
+    <a href="muestras.html" class="active">MUESTRAS</a>
+  </nav>
+</header>
 
   <main class="muestras-container">
 

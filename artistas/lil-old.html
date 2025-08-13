@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DALIA DESAMOR – El Castillo</title>
+  <title>LILEN FERREYRA – El Castillo</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
    <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/sidebar.css" />
@@ -79,22 +79,31 @@
 
     /* Responsive for small screens */
     @media (max-width: 800px) {
-      .caption {
-    display: none !important;
-  }
-       body {
-    padding-left: 0 !important;
-    padding: 0 !important;
-  }
-      .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      }
-      .sidebar { width: 100vw; position: fixed; }
-      h1 { font-size: 1.2rem; }
+         html, body { height: 100%; min-height: 100svh; } /* safe viewport on mobile */
 
-        
-  .lightbox-img { max-width: 95vw; max-height: 50vh; }
-  .close { top: 0.7rem; right: 1.2rem; font-size: 2rem; }
+  main{
+    margin-top: calc(var(--nav-h) + 8px);
+    min-height: calc(100svh - var(--nav-h) - 8px); /* fill screen below fixed nav */
+    display: flex;                                  /* let children stretch */
+  }
+
+  .masonry{
+    flex: 1;                         /* stretch to fill main */
+    column-count: 3 !important;      /* dense grid on phones */
+    column-width: auto !important;
+    column-gap: 8px;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0));
+    background: #fff;                /* avoid “white gap” vs page bg */
+  }
+
+  .slide{
+    display: inline-block;
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  }
+
+  .caption{ display: none !important; } /* we show caption in lightbox */
     }
 
     .lightbox {
@@ -158,58 +167,48 @@
     </ul>
     </div>
 
-  <h1>DALIA DESAMOR</h1>
+  <h1>LILEN FERREYRA</h1>
 
   <div class="gallery" id="gallery">
-    <!-- Reemplazar imágenes -->
     <div class="gallery-item">
-    <img src="../img/obra-dalia.png" alt="Obra 1" />
-    <div class="caption"></div>
+      <img src="../img/lil-1.png" alt="Obra 1" />
+      <div class="caption">'Compañía Naviera del Litoral S.A.', 2017. Instalación, estructura de madera con pirograbado solar y carbonilla, acompañado de publicación impresa, 4 x 6 m</div>
     </div>
-
     <div class="gallery-item">
-    <img src="../img/obra-dalia-2.png" alt="Obra 2" />
-    <div class="caption"></div>
+      <img src="../img/lil-2.png" alt="Obra 2" />
+      <div class="caption">'Compañía Naviera del Litoral S.A.', 2017. Instalación, estructura de madera con pirograbado solar y carbonilla, acompañado de publicación impresa, 4 x 6 m</div>
     </div>
-
     <div class="gallery-item">
-    <img src="../img/obra-dalia-3.png" alt="Obra 3" />
-    <div class="caption"></div>
+      <img src="../img/lil-3.png" alt="Obra 3" />
+      <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.</div>
     </div>
-
     <div class="gallery-item">
-    <img src="../img/obra-dalia-4.png" alt="Obra 3" />
-    <div class="caption"></div>
+      <img src="../img/lil-4.png" alt="Obra 4" />
+      <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.</div>
     </div>
-
     <div class="gallery-item">
-    <img src="../img/obra-dalia-5.png" alt="Obra 3" />
-    <div class="caption"></div>
+      <img src="../img/lil-6.png" alt="Obra 5" />
+      <div class="caption">'100%', 2018. Una ópera/instalación en tres actos.</div>
     </div>
-
     <div class="gallery-item">
-    <img src="../img/obra-dalia-6.png" alt="Obra 3" />
-    <div class="caption"></div>
+      <img src="../img/lil-7.png" alt="Obra 6" />
+      <div class="caption">'350s', 2022. Instalacion, madera de guatambu, cortezas. Apliques de yerba mate y borra de café, hilo sisal, potenciadores lineales, perillas, fungis y musgo. Dimensiones variables.</div>
     </div>
-
     <div class="gallery-item">
-    <img src="../img/obra-dalia-7.png" alt="Obra 3" />
-    <div class="caption"></div>
+      <img src="../img/lil-8.png" alt="Obra 7" />
+      <div class="caption">'Tengo un mixer por corazón', 2023. Instalacion, madera de guatambu, apliques de borra de café, hilo sisal, potenciadores lineales, pirograbado solar. 30 x 20 cm.</div>
     </div>
-
     <div class="gallery-item">
-    <img src="../img/obra-dalia-8.png" alt="Obra 3" />
-    <div class="caption"></div>
+      <img src="../img/lil-9.png" alt="Obra 8" />
+      <div class="caption">'SQUIRT', 2022. Instalación. Pirograbado solar sobre calado de madera de guatambú, apliques de yerba mate, flores de tipa y borra de café. 2.20 m x 1,20 m</div>
     </div>
-
     <div class="gallery-item">
-    <img src="../img/obra-dalia-9.png" alt="Obra 3" />
-    <div class="caption"></div>
+      <img src="../img/lil-10.png" alt="Obra 9" />
+      <div class="caption">'Supays', 2022. Dibujo hecho con lápiz de grafito sobre papel. 21 x 29 cm</div>
     </div>
-
     <div class="gallery-item">
-    <img src="../img/obra-dalia-10.png" alt="Obra 3" />
-    <div class="caption"></div>
+      <img src="../img/lil-11.png" alt="Obra 10" />
+      <div class="caption">'Resurrección estelar', 2023. Dibujo hecho con lapiz de grafito sobre papel. 21 x 29 cm</div>
     </div>
   </div>
 

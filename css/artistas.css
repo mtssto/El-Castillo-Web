@@ -1,53 +1,30 @@
-.artistas-listado {
-  margin-left: 200px;
-  padding: 2rem;
-  font-family: 'Playfair Display', sans-serif;
-  background-color: white;
-  font-weight: bold;
+/* page-specific styles only */
+.artistas-listado{
+  /* remove old: margin-left: 200px; */
+  margin: calc(var(--nav-h) + 8px) auto 0;
+    padding: 2rem 1.5rem;
+    font-family: 'Playfair Display', serif;
+    background: #fff;
+    font-weight: bold;
 }
 
-.artistas-listado ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.artistas-listado li {
+.artistas-listado ul{ list-style:none; margin:0; padding:0; }
+.artistas-listado li{
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 800;
   text-transform: uppercase;
   margin: 1.5rem 0;
   letter-spacing: 1px;
   border-bottom: 1px solid #eee;
-  padding-bottom: 0.5rem;
+  padding-bottom: .5rem;
 }
+.artistas-listado a{ color:#000; text-decoration:none; }
+.artistas-listado a:hover{ color:#666; }
 
-.topbar {
-  color: rgb(0, 0, 0);
-  padding: 1rem;
-  text-align: center;
-  position: relative;
-}
-.titulo {
-  font-size: 3rem;
-  margin: 1rem;
-  font-weight: bold;
-  font-family: 'Playfair Display', serif;
-  color: black;
-  text-align: center;
-}
-.artistas-listado a {
-  text-decoration: none;
-  color: black;
-}
-.artistas-listado a:hover {
-  color: #666;
-}
-
-@media screen and (max-width: 768px) {
-  /* FIX: Remove left margin/padding for content */
-  .artistas-listado {
-    margin-left: 58px;
-    padding: 1rem 0.3rem;
+/* mobile spacing */
+@media (max-width: 768px){
+  .artistas-listado{
+    margin: calc(var(--nav-h) + 8px) 0 0;
+    padding: 1rem .75rem;
   }
 }

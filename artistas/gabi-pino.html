@@ -1,312 +1,356 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GABRIELA PINO – El Castillo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
-   <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/sidebar.css" />
-  <style>
-       body {
-      font-family: 'Playfair Display', serif;
-      margin: 0;
-      padding: 1rem;
-      background: #fff;
-      color: #333;
-      padding-left: 250px;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-weight: 700;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+<title>GABRIELA PINO</title>
+<style>
+:root{
+  --gap: 16px;
+  --reveal-distance: 24px;
+  --bg: #ffffff;
+  --nav-h: 56px;
+}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:#fff;
+  font-family:"Playfair Display", serif;
+  overflow-x:hidden;
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      grid-auto-rows: 10px;
-      gap: 0;
-    }
+/* ===== TOP BAR ===== */
+.topnav{
+  position:fixed; inset:0 0 auto 0; height:var(--nav-h);
+  display:flex; align-items:center; gap:16px;
+  padding:0 16px;
+  z-index:1000;
+  color:#fff;
+  backdrop-filter: blur(4px);
+  font-family:"Playfair Display", serif;
+}
+.brand{ text-decoration:none; color:#000000; font-weight:300; letter-spacing:.04em; }
+.menu{ margin-left:auto; display:flex; gap:22px; }
+.menu a{
+  color:#000000; text-decoration:none; font-weight:300;
+  transition:opacity .2s ease;
+}
+.menu a:hover{ opacity:.85; }
+/* CHANGED: make active underline visible on light header */
+.menu a.active{ border-bottom:2px solid #000; padding-bottom:2px; }  /* NEW */
 
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-      transition: transform 0.3s ease;
-      background-color: transparent; /* importante quitar fondo */
-      border-radius: 0; 
-    }
+#nav-toggle{ display:none; }
+.burger{ width:34px; height:28px; display:none; margin-left:auto; cursor:pointer; }
+.burger span{ display:block; height:3px; background:#000000; margin:6px 0; transition:.25s; }
 
-    .gallery-item:hover {
-      transform: scale(1.05);
-      z-index: 2;
-    }
+/* ===== LAYOUT BELOW NAV ===== */
+main{ margin-top: calc(var(--nav-h) + 8px); }
 
-    .gallery-item img {
-      width: 100%;
-      display: block;
-      border-radius: 0; 
-    }
+/* ===== MASONRY ===== */
+.masonry{
+  column-gap: var(--gap);
+  padding: var(--gap);
+  column-count: 4; /* desktop */
+}
 
-    .caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    font-size: 0.85rem;
-    padding: 6px 8px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    border-radius: 0 0 8px 8px;
-    z-index: 2;
-    /* NEW: Remove height from layout flow */
-    height: auto;
+@media (max-width: 800px){
+    /* use safe viewport units so browser UI doesn't steal pixels */
+  html, body { height: 100%; min-height: 100svh; }
+
+  main{
+    /* occupy all space below the fixed navbar */
+    margin-top: calc(var(--nav-h) + 8px);
+    min-height: calc(100svh - var(--nav-h) - 8px) !important;
+    display: flex;                 /* let children stretch vertically */
+  }
+
+  .masonry{
+    flex: 1;                       /* stretch to fill main vertically */
+    column-count: 3 !important;    /* your dense mobile grid */
+    column-width: auto !important;
+    column-gap: 8px;
+    padding: 8px;
+    background: #fff;              /* ensures the area is painted */
+  }
+
+  .slide{
+    display: inline-block;
     width: 100%;
-    border-radius: 0; 
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.2);
   }
 
-
-    .gallery-item:hover .caption {
-      opacity: 1;
-    }
-
-
-    /* Responsive for small screens */
-    @media (max-width: 800px) {
-      .caption {
-    display: none !important;
-  }
-       body {
-    padding-left: 0 !important;
-    padding: 0 !important;
-  }
-      .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      }
-      .sidebar { width: 100vw; position: fixed; }
-      h1 { font-size: 1.2rem; }
-
-        
-  .lightbox-img { max-width: 95vw; max-height: 50vh; }
-  .close { top: 0.7rem; right: 1.2rem; font-size: 2rem; }
-    }
-
-    .lightbox {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0; top: 0; width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.95);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  animation: fadeIn 0.2s;
-}
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.lightbox-img {
-  max-width: 90vw;
-  max-height: 70vh;
-  border-radius: 0;
-  box-shadow: 0 4px 20px #000b;
-  margin-bottom: 1rem;
-  background: #fff;
+  .caption{ display: none !important; } /* captions appear in lightbox */
 }
 
-.lightbox-caption {
-  color: #fff;
-  font-size: 1.1rem;
-  text-align: center;
-  max-width: 90vw;
-  margin-bottom: 1.5rem;
+/* Extra small phones */
+@media (max-width: 380px){
+  .masonry{ column-count: 2 !important; }
 }
 
-.close {
-  color: #fff;
-  position: absolute;
-  top: 2rem;
-  right: 3rem;
-  font-size: 2.5rem;
+.slide{
+  break-inside: avoid;
+  margin: 0 0 var(--gap);
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  transform: translateY(var(--reveal-distance));
+  opacity: 0;
+  transition: opacity .6s ease, transform .6s cubic-bezier(.2,.65,.2,1);
   cursor: pointer;
-  font-weight: bold;
-  z-index: 10001;
-  text-shadow: 0 2px 8px #000;
-  user-select: none;
+}
+.slide.reveal{ opacity:1; transform: translateY(0); }
+
+.slide img{ display:block; width:100%; height:auto; }
+
+/* card caption hidden until hover/focus */
+.caption{
+  position:absolute; left:0; right:0; bottom:0;
+  padding:10px 12px;
+  background:linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,0));
+  font-size:.85rem;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s ease;
+}
+.slide:hover .caption,
+.slide:focus-within .caption{
+  opacity:1;
+  pointer-events:auto;
 }
 
-    /* Este JS hace que cada item tenga altura dinámica para el masonry */
-  </style>
+/* ===== MOBILE MENU ===== */
+@media (max-width:800px){
+  .burger{ display:block; }
+  .menu{
+    position:fixed; top:var(--nav-h); left:0; right:0;
+    flex-direction:column; gap:0;
+    background:rgba(255,255,255,1);
+    max-height:0; overflow:hidden; transition:max-height .25s ease;
+    border-top:1px solid rgba(0,0,0,.08);
+  }
+  .menu a{ padding:14px 16px; border-bottom:1px solid rgba(0,0,0,.08); }
+  #nav-toggle:checked ~ .menu{ max-height:70vh; }
+  #nav-toggle:checked + .burger span:nth-child(1){ transform:translateY(9px) rotate(45deg); }
+  #nav-toggle:checked + .burger span:nth-child(2){ opacity:0; }
+  #nav-toggle:checked + .burger span:nth-child(3){ transform:translateY(-9px) rotate(-45deg); }
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox{
+  position:fixed; top:0; left:0; width:100vw; height:100vh;
+  background:rgba(0,0,0,0.9);
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  opacity:0; pointer-events:none; transition:opacity .3s ease;
+  z-index:2000;
+}
+.lightbox.show{ opacity:1; pointer-events:auto; }
+.lightbox img{
+  max-width:90vw; max-height:80vh; border-radius:4px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5);
+}
+.lightbox-close{
+  position:absolute; top:20px; right:30px; font-size:2rem;
+  color:#fff; cursor:pointer; background:none; border:0;
+}
+.lightbox-caption{
+  color:#fff;
+  margin-top:12px;
+  max-width:90vw;
+  text-align:center;
+  font-size:1rem;
+  line-height:1.35;
+}
+
+/* NEW: prevent background scrolling when lightbox is open */
+body.lb-open{ overflow:hidden; }
+
+.page-title{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color:#000000; text-decoration:none; font-weight:600;
+  transition:opacity .2s ease;
+}
+</style>
 </head>
 <body>
 
-   <input type="checkbox" id="menu-toggle" />
-  <label for="menu-toggle" class="burger">&#9776;</label>
+<!-- ===== Top Navigation ===== -->
+<header class="topnav">
+  <a class="brand" href="index.html">EL CASTILLO</a>
+  <span class="page-title">GABRIELA PINO</span>
 
-    <div class="sidebar">
-    <ul>
-        <li><a href="../index.html">EL CASTILLO</a></li>
-        <li><a href="../artistas.html">ARTISTAS </a></li>
-        <li><a href="../about.html">SOBRE EL CASTILLO</a></li>
-        <li><a href="#noticias">NOTICIAS</a></li>
-        <li><a href="../muestras.html">MUESTRAS</a></li>
-    </ul>
-    </div>
+  <input id="nav-toggle" type="checkbox" aria-label="Abrir menú">
+  <label class="burger" for="nav-toggle" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </label>
 
-  <h1>GABRIELA PINO</h1>
+  <nav class="menu">
+    <a href="index.html">INICIO</a>
+    <!-- FIXED the malformed anchor -->
+    <a href="../artistas.html" class="active">ARTISTAS</a> <!-- CHANGED -->
+    <a href="../about.html">SOBRE EL CASTILLO</a>
+    <a href="#noticias">NOTICIAS</a>
+    <a href="../muestras.html">MUESTRAS</a>
+  </nav>
+</header>
 
-  <div class="gallery" id="gallery">
-     <div class="gallery-item">
-    <img src="../img/gabi-pino-1.png" alt="Obra 1" />
+<!-- ===== Content ===== -->
+<main>
+  <section class="masonry">
+    <!-- Add loading="lazy" to all images -->
+    <div class="slide">
+    <img src="../img/gabi-pino-1.png" alt="Obra 1" loading="lazy" decoding="async"/>
     <div class="caption">Naturaleza Lúdica, La ira de Dios, 2015. Instalación Site-specific. Hojalata y zinc. 8  x 4  x 4 m</div>
     </div>
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-2.png" alt="Obra 2" />
+    <div class="slide">
+    <img src="../img/gabi-pino-2.png" alt="Obra 2" loading="lazy" decoding="async"/>
     <div class="caption">Naturaleza Lúdica II, Después de la tormenta, Santa Fe, Arg, 2016. Hojalata y zinc. Medidas variables</div>
     </div>
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-3.png" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-3.png" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">Naturaleza Lúdica III, Jardín botánico norte, ciudad de Santa Fe, Arg., 2016. Hojalata y zinc. Medidas variables</div>
     </div>
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-4.png" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-4.png" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">Una caverna de amor(detalle). Mixta sobre tela. 100 x 100 cm</div>
     </div>
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-7.png" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-7.png" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">El coleccionista, 2014. Materiales diversos. 3m x 2m x 0,80m</div>
     </div>
 
-       <div class="gallery-item">
-    <img src="../img/gabi-pino-12 (1).jpg" alt="Obra 3" />
+       <div class="slide">
+    <img src="../img/gabi-pino-12 (1).jpg" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">"Tiger," de la serie el Coleccionista, 2014. Peluche en caja de madera. 40 x 50 cm</div>
     </div>
 
     
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-13.jpg" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-13.jpg" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">"Salamanca numero dos", 2024. Instalacion, papel, pastel a la tiza, collares, dorado a la hoja.  200 x 180 x 150cm. </div>
     </div>
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-8.png" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-8.png" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">Los pájaros, 2023. Bajo relieve realizado con materiales de construcción en seco. 100 x 100 cm</div>
     </div>
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-9.jpg" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-9.jpg" alt="Obra 3" loading="lazy" decoding="async" />
     <div class="caption">Los pájaros, 2023. Bajo relieve realizado con materiales de construcción en seco. 100 x 100 cm</div>
     </div>
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-10.jpg" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-10.jpg" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">Los pájaros, 2023. Bajo relieve realizado con materiales de construcción en seco. 100 x 100 cm</div>
     </div>
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-11.jpg" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-11.jpg" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">Los pájaros, 2023. Bajo relieve realizado con materiales de construcción en seco. 100 x 100 cm</div>
     </div>
 
-     <div class="gallery-item">
-    <img src="../img/gabi-pino-12.jpg" alt="Obra 3" />
+     <div class="slide">
+    <img src="../img/gabi-pino-12.jpg" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">Los pájaros, 2023. Bajo relieve realizado con materiales de construcción en seco. 100 x 100 cm</div>
     </div>
 
 
-        <div class="gallery-item">
-    <img src="../img/gabi-pino-5.png" alt="Obra 3" />
+        <div class="slide">
+    <img src="../img/gabi-pino-5.png" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">Mi nombre es Blancanieves, 2011. Maderas y manzanas. 25 m2</div>
     </div>
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-6.png" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-6.png" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">Mi nombre es Blancanieves, 2011. Maderas y manzanas. 25 m2</div>
     </div>
  
 
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-12 (2).jpg" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-12 (2).jpg" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">"Un Ciervo agua me miró cuando estaba encerrada en casa", 2020. Pastel a la tiza. 70 x 50 cm.</div>
     </div>
 
 
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-12 (3).jpg" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-12 (3).jpg" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption">"Tambien vi pasar un Oso anteojo", 2020. Pastel a la tiza. 70 x 50 cm</div>
     </div>
 
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-14.jpg" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-14.jpg" alt="Obra 3" loading="lazy" decoding="async"/>
     <div class="caption"></div>
     </div>
 
 
-    <div class="gallery-item">
-    <img src="../img/gabi-pino-15.jpg" alt="Obra 3" />
+    <div class="slide">
+    <img src="../img/gabi-pino-15.jpg" alt="Obra 3" loading="lazy" decoding="async" />
     <div class="caption">"Tambien vi pasar un Oso anteojo", 2020. Pastel a la tiza. 70 x 50 cm</div>
     </div>
-    
-  </div>
+  </section>
+</main>
 
-  <!-- Lightbox Modal -->
-<div id="lightbox" class="lightbox">
-  <span class="close">&times;</span>
-  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
-  <div class="lightbox-caption" id="lightbox-caption"></div>
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxCap"> <!-- NEW a11y -->
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-caption" id="lightboxCap"></div>
 </div>
 
-  <script>
-    // Script para hacer que cada item tenga altura dinámica según su contenido (masonry básico)
-    window.addEventListener('load', () => {
-      const gallery = document.getElementById('gallery');
-      const rowHeight = parseInt(window.getComputedStyle(gallery).getPropertyValue('grid-auto-rows'));
-      const rowGap = parseInt(window.getComputedStyle(gallery).getPropertyValue('gap'));
-      
-      gallery.querySelectorAll('.gallery-item').forEach(item => {
-        const contentHeight = item.querySelector('img').getBoundingClientRect().height;
+<script>
+/* Reveal on scroll */
+const slides = document.querySelectorAll('.slide');
+const io = new IntersectionObserver((entries, obs) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('reveal');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+slides.forEach(slide => io.observe(slide));
 
-        const rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
-        item.style.gridRowEnd = `span ${rowSpan}`;
-      });
-    });
+/* Lightbox with caption + scroll lock */
+const lightbox    = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCap = document.getElementById('lightboxCap');
+const closeBtn    = document.getElementById('lightboxClose');
 
-    document.querySelectorAll('.gallery-item img').forEach(img => {
-  img.addEventListener('click', function() {
-    document.getElementById('lightbox-img').src = this.src;
-    document.getElementById('lightbox-img').alt = this.alt;
-    const caption = this.parentElement.querySelector('.caption')?.textContent || '';
-    document.getElementById('lightbox-caption').textContent = caption;
-    document.getElementById('lightbox').style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
+document.querySelectorAll('.slide').forEach(slide => {
+  slide.addEventListener('click', () => {
+    const imgEl = slide.querySelector('img');
+    const capEl = slide.querySelector('.caption');
+    const cap   = capEl ? capEl.textContent.trim() : (imgEl.alt || '');
+    lightboxImg.src = imgEl.src;
+    lightboxImg.alt = cap;
+    lightboxCap.textContent = cap;
+    lightbox.classList.add('show');
+    document.body.classList.add('lb-open'); // NEW: lock background scroll
   });
 });
 
-document.querySelector('.close').onclick = function() {
-  document.getElementById('lightbox').style.display = 'none';
-  document.body.style.overflow = ''; // Restore scroll
-};
+function closeLightbox(){
+  lightbox.classList.remove('show');
+  document.body.classList.remove('lb-open'); // NEW
+}
 
-document.getElementById('lightbox').onclick = function(e) {
-  if (e.target === this) { // Click outside image closes
-    this.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-};
-
-  </script>
+closeBtn.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
 
 </body>
 </html>
