@@ -2,68 +2,190 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>El Castillo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- Fuentes + estilos globales -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/topbar.css" />
 
+  <style>
+    :root{ --nav-h:56px; --gap:16px; --reveal-d:24px; }
+
+    html,body{ height:100%; margin:0; font-family:"Playfair Display",serif; background:#fff; color:#000; }
+    /* Empuja el contenido por debajo de la topbar fija */
+    main{ margin-top: calc(var(--nav-h) + 8px); }
+
+    /* ===== Masonry (CSS columns) ===== */
+    .masonry{
+      column-gap: var(--gap);
+      padding: var(--gap);
+      column-count: 4;                  /* desktop */
+    }
+    @media (max-width: 1200px){ .masonry{ column-count: 3; } }
+    @media (max-width: 800px){  .masonry{ column-count: 2; } }
+    @media (max-width: 420px){  .masonry{ column-count: 2; column-gap: 12px; } }
+
+    .tile{
+      break-inside: avoid;
+      margin: 0 0 var(--gap);
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.15);
+      background:#f3f3f3;
+      transform: translateY(var(--reveal-d));
+      opacity: 0;
+      transition: opacity .6s ease, transform .6s cubic-bezier(.2,.65,.2,1);
+    }
+    .tile.in{ opacity:1; transform: translateY(0); }
+
+    .tile img{
+      display:block; width:100%; height:auto;
+      transition: transform .35s ease, opacity .25s ease;
+    }
+    .tile:hover img{ transform: scale(1.01); }
+
+    /* Loader/sentinel visual (opcional) */
+    .sentinel{
+      display: grid; place-items:center;
+      padding: 1.5rem 0 2rem;
+      color:#666;
+      font-size:.95rem;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ===== Top Navigation ===== -->
-<header class="topnav">
-  <a class="brand" href="index.html">EL CASTILLO</a>
+  <!-- ===== Top Navigation (usa css/topbar.css) ===== -->
+  <header class="topnav">
+    <a class="brand" href="index.html">EL CASTILLO</a>
 
-  <input id="nav-toggle" type="checkbox" aria-label="Abrir menú">
-  <label class="burger" for="nav-toggle" aria-hidden="true">
-    <span></span><span></span><span></span>
-  </label>
+    <input id="nav-toggle" type="checkbox" aria-label="Abrir menú">
+    <label class="burger" for="nav-toggle" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
 
-  <nav class="menu">
-    <!-- FIXED the malformed anchor -->
-    <a href="artistas.html">ARTISTAS</a> <!-- CHANGED -->
-    <a href="about.html">SOBRE EL CASTILLO</a>
-    <a href="#noticias">NOTICIAS</a>
-    <a href="muestras.html">MUESTRAS</a>
-  </nav>
-</header>
+    <nav class="menu">
+      <a href="artistas.html">ARTISTAS</a>
+      <a href="about.html">SOBRE EL CASTILLO</a>
+      <a href="muestras.html">MUESTRAS</a>
+    </nav>
+  </header>
 
+  <!-- ===== Contenido ===== -->
+  <main>
+    <section class="masonry" id="masonry"></section>
+    <div id="sentinel" class="sentinel">Cargando más…</div>
+  </main>
 
-<div class="slideshow-container">
-  <img src="img/el-castillo.png" class="slide fade" />
-  <img src="img/el-castillo-2.png" class="slide fade" />
-  <img src="img/el-castillo-3.png" class="slide fade" />
-  <img src="img/el-castillo-4.png" class="slide fade" />
-  <img src="img/el-castillo-5.png" class="slide fade" />
-</div>
+  <script>
+    // 1) Lista de imágenes (poné tus rutas reales acá)
+    const IMAGES = [
+      'img/el-castillo.png',
+      'img/el-castillo-2.png',
+      'img/el-castillo-3.png',
+      'img/el-castillo-4.png',
+      'img/el-castillo-5.png',
+      'img/obra-kev.png',
+      'img/obra-kev-1.png',
+      'img/obra-kev-2.png',
+      'img/obra-kev-3.png',
+      'img/obra-kev-4.png',
+      'img/obra-kev-5.png',
+      'img/gabi-pino-1.png',
+      'img/gabi-pino-2.png',
+      'img/gabi-pino-3.png',
+      'img/gabi-pino-4.png',
+      'img/gabi-pino-5.png',
+      'img/gabi-pino-6.png',
+      'img/obra-dalia.png',
+      'img/obra-dalia.png',
+      'img/obra-dalia-2.png',
+      'img/obra-dalia-3.png',
+      'img/obra-dalia-4.png',
+      'img/obra-dalia-5.png',
+      'img/lil-1.png',
+      'img/lil-2.png',
+      'img/lil-3.png',
+      'img/lil-4.png',
+      'img/lil-5.png',
+      'img/lil-6.png',
+      'img/lil-7.png',
+      'img/muestra-4/foto_005.jpg',
+      'img/muestra-4/foto_006.jpg',
+      'img/muestra-4/foto_007.jpg',
+      'img/muestra-4/foto_008.jpg',
+      'img/muestra-4/foto_009.jpg',
+      'img/muestra-4/foto_005.jpg',
+    ];
 
+    // Parámetros
+    const BATCH_SIZE = 12;          // cuántas tarjetas por “carga”
+    const REFRESH_MS = 5000;        // cada cuánto reemplazar una tarjeta aleatoria
+    const masonry = document.getElementById('masonry');
+    const sentinel = document.getElementById('sentinel');
 
- 
+    // 2) Utilidades
+    const shuffle = arr => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+
+    // Cola infinita: baraja y repite
+    let pool = shuffle([...IMAGES]);
+    function nextImage(){
+      if (pool.length === 0) pool = shuffle([...IMAGES]);
+      return pool.shift();
+    }
+
+    // 3) Crear tile
+    function makeTile(src){
+      const fig = document.createElement('figure');
+      fig.className = 'tile';
+      const img = document.createElement('img');
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.alt = '';
+      img.src = src;
+      img.addEventListener('load', () => fig.classList.add('in'), { once:true });
+      fig.appendChild(img);
+      return fig;
+    }
+
+    // 4) Agregar un “batch”
+    function appendBatch(count = BATCH_SIZE){
+      const frag = document.createDocumentFragment();
+      for (let i=0; i<count; i++){
+        frag.appendChild(makeTile(nextImage()));
+      }
+      masonry.appendChild(frag);
+    }
+
+    // 5) IO para carga infinita
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if (e.isIntersecting){
+          appendBatch();
+        }
+      });
+    }, { root: null, threshold: 0.1 });
+    io.observe(sentinel);
+
+    // 6) “Refresco” aleatorio de una tarjeta cada X ms (si hay tiles)
+    setInterval(()=>{
+      const tiles = masonry.querySelectorAll('.tile img');
+      if (!tiles.length) return;
+      const target = tiles[Math.floor(Math.random() * tiles.length)];
+      const newSrc = nextImage();
+      // transición suave
+      target.style.opacity = '0';
+      setTimeout(()=>{
+        target.src = newSrc;
+        // cuando cargue, vuelve a aparecer
+        target.onload = () => { target.style.opacity = '1'; target.onload = null; };
+      }, 200);
+    }, REFRESH_MS);
+
+    // 7) Primera carga
+    appendBatch();
+  </script>
 </body>
-
-<script>
-  let currentIndex = 0;
-  const slides = document.querySelectorAll('.slide');
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.remove('active');
-      if (i === index) slide.classList.add('active');
-    });
-  }
-
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % slides.length;
-    showSlide(currentIndex);
-  }
-
-  // inicializa
-  showSlide(currentIndex);
-  setInterval(nextSlide, 3000);
-</script>
-
-
-
 </html>
