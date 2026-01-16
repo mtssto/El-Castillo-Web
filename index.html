@@ -62,26 +62,48 @@
       color:#666;
       font-size:.95rem;
     }
+        /* Center link in the topbar */
+    .menu-center{
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #000;
+      text-decoration: none;
+      font-weight: 300;     /* igual que brand/menu */
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    .menu-center:hover{ opacity: .85; }
+
+    @media (max-width: 800px){
+      #nav-toggle:checked ~ .menu-center{ display:none; }
+    }
+
+
   </style>
 </head>
 <body>
 
   <!-- ===== Top Navigation (usa css/topbar.css) ===== -->
-  <header class="topnav">
-    <a class="brand" href="index.html">EL CASTILLO</a>
+ <header class="topnav">
+  <a class="brand" href="index.html">EL CASTILLO</a>
 
-    <input id="nav-toggle" type="checkbox" aria-label="Abrir menú">
-    <label class="burger" for="nav-toggle" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </label>
+  <!-- NEW: centered SHOP -->
+  <a class="menu-center" href="https://elcastillo.mitiendanube.com/">SHOP</a>
 
-    <nav class="menu">
-      <a href="artistas.html">ARTISTAS</a>
-      <a href="about.html">SOBRE EL CASTILLO</a>
-      <a href="noticias.html">NOTICIAS</a>
-      <a href="muestras.html">MUESTRAS</a>
-    </nav>
-  </header>
+  <input id="nav-toggle" type="checkbox" aria-label="Abrir menú">
+  <label class="burger" for="nav-toggle" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </label>
+
+  <nav class="menu">
+    <a href="artistas.html">ARTISTAS</a>
+    <a href="about.html">SOBRE EL CASTILLO</a>
+    <a href="noticias.html">NOTICIAS</a>
+    <a href="muestras.html">MUESTRAS</a>
+  </nav>
+</header>
 
   <!-- ===== Contenido ===== -->
   <main>
